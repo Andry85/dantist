@@ -8,11 +8,30 @@
         grid-template-columns: 200px auto 200px;
     }
 
-    &__logo {
-       
-    }
-
     &__menu {
-        
+        display: flex;
+        align-items: center;
+
+        ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+
+            li {
+                padding: 15px 30px;
+
+                a {
+                    color: var(--base-color);
+                    font-size: 1.8rem;
+                }
+
+                &.active {
+                    a {
+                        color: var(--text-color);
+                        text-decoration: none;
+                    } 
+                }
+            }
+        }
     }
 }

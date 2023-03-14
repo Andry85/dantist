@@ -10,6 +10,12 @@
   * {
     margin: 0;
   }
+
+  html {
+    /* 62.5% of 16px browser font size is 10px */
+    font-size: 62.5%;
+  }
+
   /*
     3. Allow percentage-based heights in the application
   */
@@ -24,6 +30,9 @@
   body {
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
+    font-family: 'Roboto', sans-serif;
+    color: var(--text-color);
+    font-size: 1.6rem;
   }
   /*
     6. Improve media defaults

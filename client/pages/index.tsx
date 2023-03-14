@@ -1,6 +1,4 @@
 import Head from 'next/head';
-import Header from '../components/Header/Header';
-
 
 
 export default function IndexPage() {
@@ -9,7 +7,6 @@ export default function IndexPage() {
       <Head>
         <title>Index page</title>
       </Head>
-      <Header logo='/images/smile.png'/>
     </>
   );
 }
