@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react'
 import IndexPage from '../pages/index'
 import '@testing-library/jest-dom'
 
-describe('Home', () => {
+describe('IndexPage', () => {
   it('renders header logo', () => {
     render(<IndexPage />)
 
