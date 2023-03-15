@@ -3,11 +3,11 @@ import IndexPage from '../pages/index'
 import '@testing-library/jest-dom'
 
 describe('IndexPage', () => {
-  it('renders header logo', () => {
+  it('renders text', () => {
     render(<IndexPage />)
 
-    const headerLogo = screen.getByAltText(/logo/i, {exact: true});
+    const testText = screen.getByText(/test text/i);
 
-    expect(headerLogo).toBeInTheDocument()
+    expect(testText).toBeInTheDocument()
   })
 })

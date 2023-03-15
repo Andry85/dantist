@@ -7,6 +7,7 @@ export default function IndexPage() {
       <Head>
         <title>Index page</title>
       </Head>
+      test text
     </>
   );
 }

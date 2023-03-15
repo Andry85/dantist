@@ -2,6 +2,8 @@ import styles from './Header.module.scss';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from "next/router";
+import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
+import EmailIcon from '@mui/icons-material/Email';
 
 type HeaderProps = {
     menu: {
@@ -9,9 +11,13 @@ type HeaderProps = {
         title: string;
         link: string
     }[]; 
+    contacts: {
+       number: string;
+       email: string; 
+    }
 }
 
-const Header = ({ menu }: HeaderProps) => {
+const Header = ({ menu, contacts }: HeaderProps) => {
    
     const router = useRouter();
 
@@ -33,6 +39,16 @@ const Header = ({ menu }: HeaderProps) => {
                         ))}
                     </ul>
                 </nav>
+                <div className={styles.header__sidebar}>
+                    {contacts.number && <p className={styles.header__phone}>
+                        <LocalPhoneIcon/>
+                        <span>{contacts.number}</span>
+                    </p>}
+                    {contacts.email && <p className={styles.header__email}>
+                        <EmailIcon/>
+                        <span>{contacts.email}</span>
+                    </p>}
+                </div>
                
             </div>
         </header>
