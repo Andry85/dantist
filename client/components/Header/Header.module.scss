@@ -1,5 +1,11 @@
+@import './../../styles/variables';
+
 .header {
     padding: 50px 0;
+
+    @include breakpoint(sm) {
+       
+    }
 
     &__container {
         max-width: 1280px;
@@ -22,7 +28,7 @@
                 padding: 1rem 3.5rem;
 
                 a {
-                    color: var(--base-color);
+                    color: $base-color;
                     font-size: 2.2rem;
                     font-weight: 300;
                     text-decoration: none;
@@ -30,7 +36,7 @@
 
                 &.active {
                     a {
-                        color: var(--text-color);
+                        color: $text-color;
                         text-decoration: none;
                         text-decoration: underline;
                     } 
@@ -49,11 +55,11 @@
         font-size: 2rem;
         display: flex;
         align-items: center;
-        color: var(--dark-color);
+        color: $dark-color;
         font-weight: 300;
 
         svg {
-            fill: var(--base-color);
+            fill: $base-color;
             font-size: 2rem;
             margin: 0 .5rem 0 0;
         }
@@ -63,11 +69,11 @@
         font-size: 2rem;
         display: flex;
         align-items: center;
-        color: var(--dark-color);
+        color: $dark-color;
         font-weight: 300;
 
         svg {
-            fill: var(--base-color);
+            fill: $base-color;
             font-size: 2rem;
             margin: 0 .5rem 0 0;
         }

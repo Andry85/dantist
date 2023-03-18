@@ -31,7 +31,7 @@
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
     font-family: 'Roboto', sans-serif;
-    color: var(--text-color);
+    color: $text-color;
     font-size: 1.6rem;
   }
   /*
@@ -41,6 +41,11 @@
     display: block;
     max-width: 100%;
   }
+
+  img {
+    height: auto;
+  }
+
   /*
     7. Remove built-in form typography styles
   */
