@@ -1,7 +1,6 @@
 import styles from './Preambule.module.scss';
 import Image from 'next/image';
 import Link from 'next/link';
-import { preambule } from '../../data';
 
 
 
@@ -29,7 +28,7 @@ const Preambule = ({preambule} : PreambuleProps) => {
                 </div>
                 <div className={styles.preambule__text}>
                     <p>{preambule.description}</p>
-                    <Link className={styles.preambule__more} href={preambule.button.link}>{preambule.button.title}</Link>
+                    <Link className={styles.preambule__more}  href={preambule.button.link}>{preambule.button.title}</Link>
                 </div>
             </article>
         

@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<article
+  className="preambule"
+>
+  <div
+    className="preambule__pic"
+  >
+    <img
+      alt=""
+      data-nimg="1"
+      decoding="async"
+      height={848}
+      loading="lazy"
+      onError={[Function]}
+      onLoad={[Function]}
+      src="/_next/image?url=%2Fimages%2Fdentist-about.jpg&w=3840&q=75"
+      srcSet="/_next/image?url=%2Fimages%2Fdentist-about.jpg&w=1920&q=75 1x, /_next/image?url=%2Fimages%2Fdentist-about.jpg&w=3840&q=75 2x"
+      style={
+        {
+          "color": "transparent",
+        }
+      }
+      width={1280}
+    />
+  </div>
+  <div
+    className="preambule__text"
+  >
+    <p>
+      Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard du Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy mmy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries
+    </p>
+    <a
+      className="preambule__more"
+      href="/about"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      onTouchStart={[Function]}
+    >
+      Mor details...
+    </a>
+  </div>
+</article>
+`;

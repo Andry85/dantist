@@ -6,7 +6,7 @@ describe('IndexPage', () => {
   it('renders text', () => {
     render(<IndexPage />)
 
-    const testText = screen.getByText(/test text/i);
+    const testText = screen.getByText(/simply/i);
 
     expect(testText).toBeInTheDocument()
   })

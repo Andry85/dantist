@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import Container from '../components/Container/Container';
 import Preambule from '../components/Preambule/Preambule';
+import Order from '../components/Order/Order';
 import {preambule} from '../data';
 
 
@@ -12,6 +13,7 @@ export default function IndexPage() {
       </Head>
       <Container>
         <Preambule preambule={preambule}/>
+        <Order/>
       </Container>
     </>
   );
