@@ -5,11 +5,12 @@
     padding: 1.5rem;
     border-radius: 1rem;
     color: $secondary-color;
-    margin: 5rem 0 0 0;
+    margin: 5rem 0;
 
     h2 {
         font-weight: 300;
         padding: 0 0 0 2rem;
+        color: $text-color;
     }
 
     &__inner {
@@ -18,7 +19,7 @@
 
     &__row {
         display: grid;
-        grid-template-columns: 1fr 200px;
+        grid-template-columns: 1fr 300px;
         gap: 1.6rem;
         margin-bottom: 1.6rem;
     }
@@ -43,7 +44,23 @@
         font-weight: 600;
     }
 
+    &__col {
+        position: relative;
+    }
+
     &__date {
 
+    }
+
+    &__phone {
+        
+        position: absolute;
+        color: $text-color;
+        right: 1rem;
+        top: 1.6rem;
+
+        svg {
+            font-size: 2rem;
+        }
     }
 }

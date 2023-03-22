@@ -1,9 +1,34 @@
 import * as React from 'react';
 import { Dayjs } from 'dayjs';
 import styles from './Order.module.scss';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import SmartphoneIcon from '@mui/icons-material/Smartphone';
 
 
+const theme = createTheme({
+    components: {
+        MuiInputBase: {
+            styleOverrides: {
+                root: {
+                    // Some CSS
+                    fontSize: '1.6rem',
+                    color: '#333',
+                    backgroundColor: '#fff',
+                },
+            }
+        },
+        MuiSvgIcon: {
+            styleOverrides: {
+                root: {
+                    // Some CSS
+                    fontSize: '2.6rem',
+                    color: '#333',
+                },
+            }
+        }
+    }
+  });
 
 
 
@@ -23,13 +48,18 @@ const Order = () => {
                         </div>
                         <div className={styles.order__col}>
                             <div className={styles.order__date}>
-                                <DatePicker value={value} onChange={(newValue) => setValue(newValue)} />
+                                <ThemeProvider theme={theme}>
+                                    <DatePicker value={value} onChange={(newValue) => setValue(newValue)} />
+                                </ThemeProvider>
                             </div>
                         </div>
                     </div>
                     <div className={styles.order__row}>
                         <div className={styles.order__col}>
                             <input className={styles.order__inputField} type="tel" placeholder='Your telephone number' />
+                            <div className={styles.order__phone}>
+                                <SmartphoneIcon />
+                            </div>
                         </div>
                         <div className={styles.order__col}>
                             <button className={styles.order__submitBtn}>Send</button>
