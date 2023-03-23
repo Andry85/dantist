@@ -1,0 +1,78 @@
+@import './../../styles/variables';
+
+.reviews {
+    padding: 50px 100px;
+    position: relative;
+    
+    &__container {
+        overflow: hidden;
+        
+
+        ul {
+            display: flex;
+            margin: 0;
+            padding: 0;
+            position: relative;
+            transition: all 0.5s ease-in-out;
+
+            li {
+                list-style: none;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                color: $text-color;
+                padding: 0 3rem;
+                flex-shrink: 0;
+
+                img {
+                    margin: 0 0 2rem 0;
+                }
+            }
+        }
+    }
+
+    &__prewBtn {
+        position: absolute;
+        left: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        border: 0;
+        background: none;
+        padding: 0;
+
+        svg {
+            font-size: 4rem;
+            color: $base-color;
+        }
+
+        &:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+    }
+
+    &__nextBtn {
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        border: 0;
+        background: none;
+        padding: 0;
+
+        svg {
+            font-size: 4rem;
+            color: $base-color;
+        }
+
+        &:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+    }
+
+}

@@ -30,3 +30,37 @@ export const preambule = {
     }
 }
 
+export const reviews = [
+    {
+        image: "/images/dentist-about.jpg",
+        description: "Lorem Ipsum is simply ad dummy text of the printing and typesetting industry."
+    },
+    {
+        image: "/images/dentist-about.jpg",
+        description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+    },
+    {
+        image: "/images/smile.png",
+        description: "Lorem Ipsum is 1 simply dummy text of the printing and typesetting industry."
+    },
+    {
+        image: "/images/dentist-about.jpg",
+        description: "Lorem Ipsum is simply dad dummy text of the printing and typesetting industry."
+    },
+    {
+        image: "/images/dentist-about.jpg",
+        description: "Lorem Ipsum is simply dummy dad text of the printing and typesetting industry."
+    },
+    {
+        image: "/images/dentist-about.jpg",
+        description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+    },
+    {
+        image: "/images/dentist-about.jpg",
+        description: "Lorem Ipsum is simply dummy dad text of the printing and typesetting industry."
+    },
+    {
+        image: "/images/dentist-about.jpg",
+        description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+    }
+];
