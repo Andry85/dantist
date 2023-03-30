@@ -19,6 +19,7 @@ export default function IndexPage() {
           reviews={reviews}
           slides={4}
           />
+          Index page
       </Container>
     </>
   );

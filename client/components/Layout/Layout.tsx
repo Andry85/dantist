@@ -1,7 +1,7 @@
 import Header from "../Header/Header";
 import {menu, contacts} from '../../data';
 import { LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import Footer from "../Footer/Footer";
 
 

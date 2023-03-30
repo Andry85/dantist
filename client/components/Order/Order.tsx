@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { Dayjs } from 'dayjs';
 import styles from './Order.module.scss';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
@@ -33,7 +32,26 @@ const theme = createTheme({
 
 
 const Order = () => {
-    const [value, setValue] = React.useState<Dayjs | null>(null);
+    const [value, setValue] = React.useState<string | null>(null);
+    const [name, setName] = React.useState<string>('');
+    const [phone, setPhone] = React.useState<string>('');
+    
+    const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>): void => {
+        e.preventDefault();
+        const date = new Date(value);
+        console.log(name);
+        console.log(phone);
+        console.log(date);
+        
+    }
+
+    const handleName = (e: React.ChangeEvent<HTMLInputElement>): void => {
+        setName(e.target.value);
+    }
+
+    const handlePhone = (e: React.ChangeEvent<HTMLInputElement>): void => {
+        setPhone(e.target.value);
+    }
 
 
     return (
@@ -41,10 +59,15 @@ const Order = () => {
           <div className={styles.order}>
             <h2>Fill out your data</h2>
             <div className={styles.order__inner}>
-                <form method='post' action='#'>
+                <form onSubmit={handleSubmit}>
                     <div className={styles.order__row}>
                         <div className={styles.order__col}>
-                            <input className={styles.order__inputField} type="text" placeholder='Full name' />
+                            <input 
+                                className={styles.order__inputField} 
+                                type="text" 
+                                placeholder='Full name' 
+                                onChange={handleName}
+                            />
                         </div>
                         <div className={styles.order__col}>
                             <div className={styles.order__date}>
@@ -56,7 +79,12 @@ const Order = () => {
                     </div>
                     <div className={styles.order__row}>
                         <div className={styles.order__col}>
-                            <input className={styles.order__inputField} type="tel" placeholder='Your telephone number' />
+                            <input 
+                                className={styles.order__inputField} 
+                                type="tel" 
+                                placeholder='Your telephone number' 
+                                onChange={handlePhone}
+                            />
                             <div className={styles.order__phone}>
                                 <SmartphoneIcon />
                             </div>

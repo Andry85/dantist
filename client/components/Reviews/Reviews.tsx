@@ -26,8 +26,6 @@ const Reviews = ({reviews, slides} : ReviewsProps) => {
 
    
     const handleMove = (type: string): void => {
-        console.log(type,'type');
-        console.log(position,'position');
 
         if (type === 'left') {
             if (position > -sliderOverwlow) {
