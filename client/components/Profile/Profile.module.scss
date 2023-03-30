@@ -1,2 +1,66 @@
 @import './../../styles/variables';
 
+.profile {
+    display: grid;
+    grid-template-columns: 40% 1fr;
+    gap: 2rem;
+
+    &__sidebar {
+        padding: 3rem 2rem 2rem 2rem;
+    }
+
+    &__pic {
+        padding: 4rem;
+    }
+
+    &__description {
+        
+        p {
+            font-size: 1.8rem;
+        }
+
+        h2 {
+            margin: 0 0 2rem 0;
+        }
+    }
+
+    &__experience {
+        padding: 1.5rem 0 0 0;
+        display: flex;
+        align-items: center;
+
+        h3 {
+            font-weight: normal;
+        }
+
+        strong {
+            margin: 0 0.5rem 0 2rem;
+        }
+    }
+
+    &__reviews {
+        padding: 1.5rem 0 0 0;
+        display: flex;
+        align-items: center;
+
+        h3 {
+            font-weight: normal;
+        }
+    }
+    &__skils {
+        list-style: none;
+        margin: 0 0 0 2rem;
+        padding: 0;
+        display: flex;
+        align-items: center;  
+
+        li {
+            margin: 0 0.5rem 0 0;
+
+            svg {
+                font-size: 1.8rem;
+                color:  $yellow-color;
+            }
+        }
+    }
+}

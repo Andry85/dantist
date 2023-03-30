@@ -24,10 +24,9 @@
         margin-bottom: 1.6rem;
     }
 
-
     &__inputField {
         width: 100%;
-        background-color: $secondary-color;
+        background-color: $white-color;
         border-radius: 1rem;
         border: 0;
         padding: 1.5rem 1.5rem;
@@ -46,10 +45,6 @@
 
     &__col {
         position: relative;
-    }
-
-    &__date {
-
     }
 
     &__phone {
