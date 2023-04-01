@@ -19,7 +19,7 @@
         &__title {
             border-bottom: 1px solid $text-color;
             padding: 2rem;
-            font-weight:  normal;
+            font-weight: bold;
             font-size: 1.8rem;
             position: relative;
             cursor: pointer;
@@ -33,6 +33,14 @@
                 position: absolute;
                 right: 2rem;
                 top: 50%;
+                transition: all 0.1s ease;
+            }
+        }
+
+        &__titleActive {
+            .arrow {
+                right: 1.5rem;
+                transform: rotate(-135deg) translateY(-50%);
             }
         }
 

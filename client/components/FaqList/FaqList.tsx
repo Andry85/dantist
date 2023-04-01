@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState} from 'react';
 import styles from './FaqList.module.scss';
 
 
@@ -15,11 +15,14 @@ const FaqList = ({faq} : FaqListProps) => {
     const [faqArray, setFaqArray] = useState(Array(faq.length).fill(0));
     const arrCopy = [...faqArray];
 
-
-    const handleTitleClick = (index: number): void => {
+    const toogleAccardion = (index) => {
         const filterArr = arrCopy.map((el, i) => {
             if (i === index) {
-                el  = 'active';
+                if (el !== 'active') {
+                    el  = 'active';
+                } else {
+                    el  = 0;
+                }
             } else {
                 el  = 0;
             }
@@ -29,18 +32,14 @@ const FaqList = ({faq} : FaqListProps) => {
         setFaqArray(filterArr);
     }
 
+
+    const handleTitleClick = (index: number): void => {
+        toogleAccardion(index);
+    }
+
     const handleTitleOnKeyDown = (index: number, event: React.KeyboardEvent<HTMLHeadingElement>): void => {
         if(event.key === 'Enter') { 
-            const filterArr = arrCopy.map((el, i) => {
-                if (i === index) {
-                    el  = 'active';
-                } else {
-                    el  = 0;
-                }
-    
-                return el;
-            });
-            setFaqArray(filterArr);
+            toogleAccardion(index);
         }
     }
 
@@ -53,7 +52,7 @@ const FaqList = ({faq} : FaqListProps) => {
                     {faq.map((item, i) => (
                         <li key={i}>
                             <h3 
-                                className={styles.faqWrapperList__title}
+                                className={`${styles.faqWrapperList__title} ${faqArray[i] === 'active' ? styles.faqWrapperList__titleActive : ''}`}
                                 onClick={() => handleTitleClick(i)} 
                                 onKeyDown={(event) => handleTitleOnKeyDown(i, event)}
                                 tabIndex={1}

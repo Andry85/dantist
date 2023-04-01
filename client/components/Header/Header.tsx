@@ -1,3 +1,4 @@
+import React, { useState} from 'react';
 import styles from './Header.module.scss';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -21,6 +22,12 @@ const Header = ({ menu, contacts }: HeaderProps) => {
    
     const router = useRouter();
 
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+    const handleClickMenuBurger = (event: React.MouseEvent<HTMLDivElement>):void => {
+        setIsMobileMenuOpen(!isMobileMenuOpen);
+    }
+
     return (
         <>
         <header className={styles.header}>
@@ -34,6 +41,22 @@ const Header = ({ menu, contacts }: HeaderProps) => {
                     <ul>
                         {menu.map(item => (
                             <li key={item.id} className={router.asPath == item.link ? styles.active : ""}>
+                                <Link href={item.link}>{item.title}</Link>
+                            </li>
+                        ))}
+                    </ul>
+                </nav>
+                <nav className={styles.header__menuMobile}>
+                    <div 
+                        className={`${styles.header__menuMobileBurger} ${isMobileMenuOpen ? styles.opened : ''}`}
+                        onClick={handleClickMenuBurger} role='button'
+                    >
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <ul className={`${isMobileMenuOpen ? styles.opened : ''}`}>
+                        {menu.map(item => (
+                            <li key={item.id} className={router.asPath == item.link ? styles.active : ""} onClick={handleClickMenuBurger}>
                                 <Link href={item.link}>{item.title}</Link>
                             </li>
                         ))}
