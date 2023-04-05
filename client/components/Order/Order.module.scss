@@ -22,6 +22,10 @@
         grid-template-columns: 1fr 300px;
         gap: 1.6rem;
         margin-bottom: 1.6rem;
+
+        @include breakpoint(md) {
+            grid-template-columns: 1fr;
+        }
     }
 
     &__inputField {

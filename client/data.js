@@ -62,6 +62,14 @@ export const reviews = [
     {
         image: "/images/dentist-about.jpg",
         description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+    },
+    {
+        image: "/images/dentist-about.jpg",
+        description: "Lorem Ipsum is simply dummy dad text of the printing and typesetting industry."
+    },
+    {
+        image: "/images/dentist-about.jpg",
+        description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
     }
 ];
 

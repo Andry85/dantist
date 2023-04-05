@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import styles from './Reviews.module.scss';
 import Image from 'next/image';
 import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
@@ -20,9 +20,16 @@ const Reviews = ({reviews, slides} : ReviewsProps) => {
     const [position, setPosition] = useState(0);
     const [isLeftArrowDisabled, setIsLeftArrowDisabled] = useState(false);
     const [isRightArrowDisabled, setIsRigthArrowDisabled] = useState(false);
+    const [countSlides, setCountSlides] = useState(0);
+    const [sliderOverwlow, setSliderOverwlow] = useState(0);
 
+    useEffect(() => {
+        //This code is executed in the browser
+        let windowW = window.innerWidth;
+        setCountSlides(windowW < 768 ? 1 : slides);
+        setSliderOverwlow(reviews.length - countSlides);
+    }, [])
 
-    const sliderOverwlow = reviews.length - slides;
 
    
     const handleMove = (type: string): void => {
@@ -50,27 +57,28 @@ const Reviews = ({reviews, slides} : ReviewsProps) => {
         }
     }
 
+    console.log(sliderOverwlow)
 
     return (
         <>
             <div className={styles.reviews}>
-                {sliderOverwlow > 0 ? (
+                {sliderOverwlow && sliderOverwlow > 0 ? (
                         <button disabled={isLeftArrowDisabled} className={styles.reviews__prewBtn} onClick={() => handleMove('left')}>
                             <ArrowCircleLeftIcon/>
                         </button>
                     ) : ''
                 }
                 <div className={styles.reviews__container}>
-                    <ul style={{left: `${position * 25}%`}}>
+                    <ul style={{left: `${position * (100/countSlides)}%`}}>
                         {reviews.map((item, index) => (
-                            <li key={index} style={{flexBasis: `${100 / slides}%`}}>
+                            <li key={index} style={{flexBasis: `${100 / countSlides}%`}}>
                                 <Image src={item.image} width={100} height={100} alt="" />
                                 <p>{item.description}</p>
                             </li>
                         ))}
                     </ul>
                 </div>
-                {sliderOverwlow > 0 ? (
+                {sliderOverwlow && sliderOverwlow > 0 ? (
                          <button disabled={isRightArrowDisabled} className={styles.reviews__nextBtn} onClick={() => handleMove('right')}>
                             <ArrowCircleRightIcon/>
                         </button>

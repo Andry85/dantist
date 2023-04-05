@@ -5,8 +5,8 @@
     grid-template-columns: 50% 1fr;
     gap: 1.5rem;
 
-    &__pic {
-
+    @include breakpoint(md) {
+        grid-template-columns: 1fr;
     }
 
     &__text {
