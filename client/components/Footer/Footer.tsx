@@ -15,18 +15,23 @@ const Footer = () => {
                 <p>© 2023 Smile Dentist clinic. All rights reserved.</p>
                 <ul className={styles.footer__social}>
                     <li>    
-                        <Link href="#">
+                        <Link href="https://twitter.com/" target="_blank">
                             <TwitterIcon/>
                         </Link>
                     </li>
                     <li>    
-                        <Link href="#">
+                        <Link href="https://www.youtube.com/" target="_blank">
                             <YouTubeIcon/>
                         </Link>
                     </li>
                     <li>    
-                        <Link href="#">
+                        <Link href="https://www.facebook.com/" target="_blank">
                             <FacebookIcon/>
+                        </Link>
+                    </li>
+                    <li>    
+                        <Link href="/admin/login">
+                            Login
                         </Link>
                     </li>
                 </ul>

@@ -6,7 +6,6 @@ import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
 
 
 
-
 type ReviewsProps = {
     reviews: {
         image: string;
@@ -25,7 +24,7 @@ const Reviews = ({reviews, slides} : ReviewsProps) => {
 
     useEffect(() => {
         //This code is executed in the browser
-        let windowW = window.innerWidth;
+        let windowW: number = window.innerWidth;
         setCountSlides(windowW < 768 ? 1 : slides);
         setSliderOverwlow(reviews.length - countSlides);
     }, [])
@@ -59,8 +58,6 @@ const Reviews = ({reviews, slides} : ReviewsProps) => {
 
 
     }
-
-    
 
     return (
         <>

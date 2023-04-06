@@ -1,0 +1,28 @@
+@import './../../styles/variables';
+
+.login {
+    padding: 3rem;
+    max-width: 400px;
+    margin: 0 auto;
+
+    &__row {
+        padding: 0 0 1.5rem 0;
+    }
+
+    &__inputField {
+        width: 100%;
+        padding: 1rem;
+        border: 1px solid  $text-color;
+    }
+
+    &__submitBtn {
+        background-color: $dark-color;
+        border: 0;
+        padding: 1.5rem 1.5rem;
+        border-radius: 1rem;
+        color: $secondary-color;
+        width: 100%;
+        cursor: pointer;
+        font-weight: 600;
+    }
+}

@@ -36,8 +36,8 @@ const Order = () => {
     const [name, setName] = React.useState<string>('');
     const [phone, setPhone] = React.useState<string>('');
     
-    const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>): void => {
-        e.preventDefault();
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>):void => {
+        event.preventDefault();
         const date = new Date(value);
         console.log(name);
         console.log(phone);

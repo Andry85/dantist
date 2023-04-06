@@ -29,6 +29,11 @@
                     color: $text-color;
                 }
             }
+
+            a {
+                color: $base-color;
+                font-size: 1.2rem;
+            }
         }
     }
 }
