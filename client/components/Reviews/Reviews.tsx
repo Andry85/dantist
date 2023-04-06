@@ -33,6 +33,7 @@ const Reviews = ({reviews, slides} : ReviewsProps) => {
 
    
     const handleMove = (type: string): void => {
+        setSliderOverwlow(reviews.length - countSlides);
 
         if (type === 'left') {
             if (position > -sliderOverwlow) {
@@ -55,14 +56,16 @@ const Reviews = ({reviews, slides} : ReviewsProps) => {
                 setIsRigthArrowDisabled(true);
             }
         }
+
+
     }
 
-    console.log(sliderOverwlow)
+    
 
     return (
         <>
             <div className={styles.reviews}>
-                {sliderOverwlow && sliderOverwlow > 0 ? (
+                {sliderOverwlow > 0 ? (
                         <button disabled={isLeftArrowDisabled} className={styles.reviews__prewBtn} onClick={() => handleMove('left')}>
                             <ArrowCircleLeftIcon/>
                         </button>
@@ -78,7 +81,7 @@ const Reviews = ({reviews, slides} : ReviewsProps) => {
                         ))}
                     </ul>
                 </div>
-                {sliderOverwlow && sliderOverwlow > 0 ? (
+                {sliderOverwlow > 0 ? (
                          <button disabled={isRightArrowDisabled} className={styles.reviews__nextBtn} onClick={() => handleMove('right')}>
                             <ArrowCircleRightIcon/>
                         </button>
