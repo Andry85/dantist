@@ -5,20 +5,11 @@ import Link from 'next/link';
 import { useRouter } from "next/router";
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import EmailIcon from '@mui/icons-material/Email';
+import {menu, contacts} from '../../data'
 
-type HeaderProps = {
-    menu: {
-        id: number;
-        title: string;
-        link: string
-    }[]; 
-    contacts: {
-       number: string;
-       email: string; 
-    }
-}
 
-const Header = ({ menu, contacts }: HeaderProps) => {
+
+const Header = () => {
    
     const router = useRouter();
 
