@@ -1,0 +1,11 @@
+@import './../../../styles/variables';
+
+.container {
+    padding: 0 1rem;
+    display: flex;
+    height: calc(100vh - 91px);
+
+    @include breakpoint(md) {
+       
+    }
+}

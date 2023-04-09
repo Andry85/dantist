@@ -1,0 +1,33 @@
+@import './../../../styles/variables';
+
+.sidebar {
+    border-right: 1px solid $secondary-color;
+    flex-basis: 300px;
+    padding: 2rem;
+
+    &__block {
+        h2 {
+            padding: 1.5rem;
+            border-bottom: 1px dotted $secondary-color;
+            font-size: 1.3rem;
+            font-weight: 500;
+        }
+
+        ul {
+            list-style: none;
+            margin: 0 0 2rem 0;
+            padding: 0;
+        
+            li {
+                border-bottom: 1px dotted $secondary-color; 
+
+                a {
+                    color: $base-color;
+                    display: block;
+                    padding: 1rem 2rem;
+                    font-size: 1.8rem;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,39 @@
+@import './../../../../styles/variables';
+
+.index {
+    padding: 2rem;
+
+    &__row {
+        padding: 0 0 2rem;
+        margin: 0 0 2rem;
+        border-bottom: 1px dotted $secondary-color;
+
+        label {
+            display: block;
+            font-size: 1.6rem;
+            font-weight: bold;
+            padding: 0 0 1rem 0;
+        }
+
+        input {
+            width: 100%;
+            border: 1px solid $secondary-color;
+            padding: 1rem;
+        }
+
+        textarea {
+            width: 100%;
+            border: 1px solid $secondary-color;
+            padding: 1rem;
+        }
+    }
+
+    &__submitBtn {
+      background-color: $dark-color;
+      color: $white-color;
+      padding: 1rem;
+      cursor: pointer;
+      width: 200px;
+      border: 0;
+    }
+}

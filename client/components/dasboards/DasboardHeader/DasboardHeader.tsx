@@ -1,6 +1,5 @@
 import React, { useState} from 'react';
 import styles from './DasboardHeader.module.scss';
-import Image from 'next/image';
 import Link from 'next/link';
 
 
