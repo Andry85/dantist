@@ -1,0 +1,78 @@
+@import './../../../../styles/variables';
+
+.faq {
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        li {
+            display: grid;
+            grid-template-columns: 40px 600px 100px auto;
+            padding: 3rem;
+            border-bottom: 1px dotted $secondary-color;
+            align-items: center;
+        }
+    }
+
+    &__index {
+        font-weight: bold;
+    }
+
+    &__title {
+
+    }
+
+    &__edit {
+        a {
+            color: $base-color;
+        }
+    }
+
+    &__delete {
+        button {
+            background: $red-color;
+            color: $white-color;
+            border: 0;
+            cursor: pointer;
+            padding: 1rem;
+
+        }
+    }
+
+    &__row {
+        padding: 2rem;
+        margin: 0 0 2rem;
+        border-bottom: 1px dotted $secondary-color;
+
+        label {
+            display: block;
+            font-size: 1.6rem;
+            font-weight: bold;
+            padding: 0 0 1rem 0;
+        }
+
+        input {
+            width: 100%;
+            border: 1px solid $secondary-color;
+            padding: 1rem;
+        }
+
+        textarea {
+            width: 100%;
+            border: 1px solid $secondary-color;
+            padding: 1rem;
+        }
+    }
+
+    &__submitBtn {
+      background-color: $dark-color;
+      color: $white-color;
+      padding: 1rem;
+      cursor: pointer;
+      width: 200px;
+      border: 0;
+      margin-left: 2rem;
+    }
+   
+}
