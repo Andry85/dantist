@@ -25,7 +25,7 @@ export default function IndexDashboard() {
     console.log(file, 'file');
     console.log(text, 'text');
     console.log(link, 'link');
-}
+  }
 
   return (
     <>

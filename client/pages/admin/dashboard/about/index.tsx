@@ -1,3 +1,4 @@
+import React, {useState} from 'react';
 import Head from 'next/head';
 import styles from './Index.module.scss';
 import DasboardHeader from '../../../../components/dasboards/DasboardHeader/DasboardHeader';
@@ -7,8 +8,39 @@ import DasboardContent from '../../../../components/dasboards/DasboardContent/Da
 
 
 
-
 export default function AboutDashboard() {
+
+  const [file, setFile] = useState<File>(null);
+  const [title, setTitle] = useState<string>('');
+  const [text, setText] = useState<string>('');
+  const [expirience, setExpirience] = useState<number>(0);
+  const [reviews, setReviews] = useState<number>(0);
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      setFile(e.target.files[0]);
+    }
+  };
+
+  const handleExpirienceChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setExpirience(Number(e.target.value));
+  };
+
+  const handleReviewsChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setReviews(Number(e.target.value));
+  };
+  
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>):void => {
+    event.preventDefault();
+    console.log(file, 'file');
+    console.log(text, 'text');
+    console.log(title, 'title');
+    console.log(expirience, 'expirience');
+    console.log(reviews, 'reviews');
+  }
+
+
   return (
     <>
       <Head>
@@ -19,22 +51,22 @@ export default function AboutDashboard() {
         <DasboardSidebar/>
         <DasboardContent>
           <div className={styles.index}>
-            <form>
+            <form onSubmit={handleSubmit}>
               <div className={styles.index__row}>
                 <label>Title</label>
-                <input type="text" />
+                <input type="text" onChange={(e)=> setTitle(e.target.value)} />
               </div>
               <div className={styles.index__row}>
                 <label>Text</label>
-                <textarea />
+                <textarea onChange={(e)=> setText(e.target.value)} />
               </div>
               <div className={styles.index__row}>
                 <label>Image</label>
-                <input type="file" />
+                <input type="file" onChange={handleFileChange}  />
               </div>
               <div className={styles.index__row}>
                 <label>Expirience</label>
-                <select>
+                <select onChange={handleExpirienceChange}>
                   <option>1</option>
                   <option>2</option>
                   <option>3</option>
@@ -57,10 +89,11 @@ export default function AboutDashboard() {
                   <option>20</option>
                   <option>more 20</option>
                 </select>
+                <i className={styles.index__expirience}>years</i>
               </div>
               <div className={styles.index__row}>
                 <label>Reviews</label>
-                <select>
+                <select onChange={handleReviewsChange}>
                   <option>1</option>
                   <option>2</option>
                   <option>3</option>

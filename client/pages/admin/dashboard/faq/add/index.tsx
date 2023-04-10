@@ -1,3 +1,4 @@
+import React, {useState} from 'react';
 import Head from 'next/head';
 import styles from './Index.module.scss';
 import DasboardHeader from '../../../../../components/dasboards/DasboardHeader/DasboardHeader';
@@ -8,6 +9,16 @@ import DasboardContent from '../../../../../components/dasboards/DasboardContent
 
 
 export default function FaQAddDashboard() {
+
+  const [title, setTitle] = useState<string>('');
+  const [text, setText] = useState<string>('');
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>):void => {
+    event.preventDefault();
+    console.log(text, 'text');
+    console.log(title, 'title');
+  }
+
   return (
     <>
       <Head>
@@ -18,14 +29,14 @@ export default function FaQAddDashboard() {
         <DasboardSidebar/>
         <DasboardContent>
         <div>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <div className={styles.faq__row}>
                     <label>Title</label>
-                    <input type="text"/>
+                    <input type="text" onChange={(e)=> setTitle(e.target.value)}/>
                 </div>
                 <div className={styles.faq__row}>
                     <label>Text</label>
-                    <textarea rows={10}></textarea>
+                    <textarea rows={10} onChange={(e)=> setText(e.target.value)}></textarea>
                 </div>
                 <button className={styles.faq__submitBtn}>Save</button>
             </form>

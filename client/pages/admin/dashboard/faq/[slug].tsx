@@ -1,3 +1,4 @@
+import React, {useState} from 'react';
 import Head from 'next/head';
 import styles from './Index.module.scss';
 import DasboardHeader from '../../../../components/dasboards/DasboardHeader/DasboardHeader';
@@ -13,9 +14,18 @@ import {faq} from '../../../../data';
 
 export default function FaQSlugDashboard() {
 
+    const [title, setTitle] = useState<string>('');
+    const [text, setText] = useState<string>('');
+
     const router = useRouter();
     const path = router.asPath.split('/');
     const pathEL = path[path.length-1];
+
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>):void => {
+        event.preventDefault();
+        console.log(text, 'text');
+        console.log(title, 'title');
+    }
 
     return (
         <>
@@ -27,14 +37,14 @@ export default function FaQSlugDashboard() {
             <DasboardSidebar/>
             <DasboardContent>
             <div>
-                <form>
+                <form onSubmit={handleSubmit}>
                     <div className={styles.faq__row}>
                         <label>Title</label>
-                        <input type="text" value={faq[pathEL].title}/>
+                        <input type="text" placeholder={faq[pathEL].title} onChange={(e)=> setTitle(e.target.value)}/>
                     </div>
                     <div className={styles.faq__row}>
                         <label>Text</label>
-                        <textarea rows={10} value={faq[pathEL].text}></textarea>
+                        <textarea rows={10} placeholder={faq[pathEL].text} onChange={(e)=> setText(e.target.value)}></textarea>
                     </div>
                     <button className={styles.faq__submitBtn}>Save</button>
                 </form>

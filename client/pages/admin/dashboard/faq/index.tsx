@@ -6,6 +6,7 @@ import DasboardSidebar from '../../../../components/dasboards/DasboardSidebar/Da
 import DasboardContent from '../../../../components/dasboards/DasboardContent/DasboardContent';
 import {faq} from '../../../../data';
 import Link from 'next/link';
+import { ReactNode } from 'react';
 
 
 
@@ -22,7 +23,7 @@ export default function FaQDashboard() {
         <DasboardContent>
           <div className={styles.faq}>
             <ul>
-              {faq.map((item, i) => (
+              {faq.map((item, i:number): ReactNode => (
                   <li key={i}>
                       <div className={styles.faq__index}>{i+1}</div>
                       <div className={styles.faq__title}>{item.title}</div>

@@ -26,6 +26,13 @@
             border: 1px solid $secondary-color;
             padding: 1rem;
         }
+
+        select {
+            width: 300px;
+            border: 1px solid $secondary-color;
+            padding: 1rem 2rem;
+            background-color: $white-color;
+        }
     }
 
     &__submitBtn {
@@ -35,5 +42,10 @@
       cursor: pointer;
       width: 200px;
       border: 0;
+    }
+
+    &__expirience {
+        padding: 0 0 0 1rem;
+        font-size: 1.4rem;
     }
 }
