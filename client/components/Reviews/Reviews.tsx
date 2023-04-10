@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './Reviews.module.scss';
 import Image from 'next/image';
 import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';

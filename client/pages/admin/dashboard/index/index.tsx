@@ -1,3 +1,4 @@
+import React, {useState} from 'react';
 import Head from 'next/head';
 import styles from './Index.module.scss';
 import DasboardHeader from '../../../../components/dasboards/DasboardHeader/DasboardHeader';
@@ -7,8 +8,25 @@ import DasboardContent from '../../../../components/dasboards/DasboardContent/Da
 
 
 
-
 export default function IndexDashboard() {
+  const [file, setFile] = useState<File>(null);
+  const [text, setText] = useState<string>('');
+  const [link, setLink] = useState<string>('');
+
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      setFile(e.target.files[0]);
+    }
+  };
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>):void => {
+    event.preventDefault();
+    console.log(file, 'file');
+    console.log(text, 'text');
+    console.log(link, 'link');
+}
+
   return (
     <>
       <Head>
@@ -19,18 +37,18 @@ export default function IndexDashboard() {
         <DasboardSidebar/>
         <DasboardContent>
           <div className={styles.index}>
-            <form>
+            <form onSubmit={handleSubmit}>
               <div className={styles.index__row}>
                 <label>Image</label>
-                <input type="file" />
+                <input type="file" onChange={handleFileChange} />
               </div>
               <div className={styles.index__row}>
                 <label>Text</label>
-                <textarea />
+                <textarea  value={text} onChange={(e)=> setText(e.target.value)} />
               </div>
               <div className={styles.index__row}>
                 <label>Link</label>
-                <input type="text" />
+                <input type="text" onChange={(e)=> setLink(e.target.value)} />
               </div>
               <button className={styles.index__submitBtn}>Save</button>
             </form>
