@@ -36,13 +36,13 @@ const DasboardSidebar = () => {
                 <div className={styles.sidebar__block}>
                     <h2>Others</h2>
                     <ul>
-                        <li>
-                            <Link href="/">
+                        <li className={router.asPath == "/admin/dashboard/orders" ? styles.active : ""}>
+                            <Link href="/admin/dashboard/orders">
                                 List of orders
                             </Link>
                         </li>
-                        <li>
-                            <Link href="/">
+                        <li className={router.asPath == "/admin/dashboard/slider" ? styles.active : ""}>
+                            <Link href="/admin/dashboard/slider">
                                 Slider
                             </Link>
                         </li>

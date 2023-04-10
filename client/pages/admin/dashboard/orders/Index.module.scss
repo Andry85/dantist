@@ -1,6 +1,6 @@
 @import './../../../../styles/variables';
 
-.faq {
+.orders {
     ul {
         list-style: none;
         margin: 0;
@@ -8,19 +8,19 @@
 
         li {
             display: grid;
-            grid-template-columns: 40px 600px 100px auto;
+            grid-template-columns: 100px 200px 200px 200px 150px auto;
             padding: 3rem;
             border-bottom: 1px dotted $secondary-color;
             align-items: center;
         }
     }
 
-    &__index {
-        font-weight: bold;
+    &__status {
+        font-size: 1.2rem;
     }
 
-    &__title {
-
+    &__name {
+        font-size: 1.8rem;
     }
 
     &__edit {

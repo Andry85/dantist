@@ -4,38 +4,43 @@ import DasboardHeader from '../../../../components/dasboards/DasboardHeader/Dasb
 import DasboardContainer from '../../../../components/dasboards/DasboardContainer/DasboardContainer';
 import DasboardSidebar from '../../../../components/dasboards/DasboardSidebar/DasboardSidebar';
 import DasboardContent from '../../../../components/dasboards/DasboardContent/DasboardContent';
-import {faq} from '../../../../data';
+import {reviews} from '../../../../data';
 import Link from 'next/link';
+import Image from 'next/image';
 
 
 
 
-export default function FaQDashboard() {
+export default function Slider() {
   return (
     <>
       <Head>
-        <title>FaQ dashboard page</title>
+        <title>Orders dashboard page</title>
       </Head>
       <DasboardHeader/>
       <DasboardContainer>
         <DasboardSidebar/>
         <DasboardContent>
-          <div className={styles.faq}>
+          <div className={styles.slider}>
             <ul>
-              {faq.map((item, i) => (
+              {reviews.map((item, i) => (
                   <li key={i}>
-                      <div className={styles.faq__index}>{i+1}</div>
-                      <div className={styles.faq__title}>{item.title}</div>
-                      <div className={styles.faq__edit}>
-                        <Link href={`/admin/dashboard/faq/${i}`}>Edit</Link>
+                      <figure className={styles.slider__img}>
+                        <Image src={item.image} width={100} height={100} alt="" />
+                      </figure>
+                      <div className={styles.slider__desc}>
+                        <p>{item.description}</p>
                       </div>
-                      <div className={styles.faq__delete}>
+                      <div className={styles.slider__edit}>
+                        <Link href={`/admin/dashboard/slider/${i}`}>Edit</Link>
+                      </div>
+                      <div className={styles.slider__delete}>
                         <button>Delete</button>
                       </div>
                   </li>
               ))}
             </ul>
-            <Link className={styles.faq__add} href="/admin/dashboard/faq/add">Add new</Link>
+            <Link className={styles.slider__add} href="/admin/dashboard/slider/add">Add new</Link>
           </div>
         </DasboardContent>
       </DasboardContainer>

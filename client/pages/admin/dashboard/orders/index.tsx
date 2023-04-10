@@ -4,38 +4,40 @@ import DasboardHeader from '../../../../components/dasboards/DasboardHeader/Dasb
 import DasboardContainer from '../../../../components/dasboards/DasboardContainer/DasboardContainer';
 import DasboardSidebar from '../../../../components/dasboards/DasboardSidebar/DasboardSidebar';
 import DasboardContent from '../../../../components/dasboards/DasboardContent/DasboardContent';
-import {faq} from '../../../../data';
+import {orders} from '../../../../data';
 import Link from 'next/link';
 
 
 
 
-export default function FaQDashboard() {
+export default function Orders() {
   return (
     <>
       <Head>
-        <title>FaQ dashboard page</title>
+        <title>Orders dashboard page</title>
       </Head>
       <DasboardHeader/>
       <DasboardContainer>
         <DasboardSidebar/>
         <DasboardContent>
-          <div className={styles.faq}>
+          <div className={styles.orders}>
             <ul>
-              {faq.map((item, i) => (
+              {orders.map((item, i) => (
                   <li key={i}>
-                      <div className={styles.faq__index}>{i+1}</div>
-                      <div className={styles.faq__title}>{item.title}</div>
-                      <div className={styles.faq__edit}>
-                        <Link href={`/admin/dashboard/faq/${i}`}>Edit</Link>
+                      <div className={styles.orders__status}>Open</div>
+                      <div className={styles.ordres__name}>{item.name}</div>
+                      <div className={styles.orders__phone}>{item.phone}</div>
+                      <div className={styles.orders__date}>{item.date}</div>
+                      <div className={styles.orders__edit}>
+                        <Link href={`/admin/dashboard/orders/${i}`}>Edit</Link>
                       </div>
-                      <div className={styles.faq__delete}>
+                      <div className={styles.orders__delete}>
                         <button>Delete</button>
                       </div>
                   </li>
               ))}
             </ul>
-            <Link className={styles.faq__add} href="/admin/dashboard/faq/add">Add new</Link>
+            <Link className={styles.orders__add} href="/admin/dashboard/orders/add">Add new</Link>
           </div>
         </DasboardContent>
       </DasboardContainer>

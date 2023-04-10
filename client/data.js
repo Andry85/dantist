@@ -103,4 +103,27 @@ export const faq = [
         title: "Lorem Ipsum is simply dummy text of the printing",
         text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard du Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy mmy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries"
     }
+];
+
+export const orders = [
+    {
+        name: "John Doe",
+        phone: "066-558-55-55",
+        date: '10/10/2022'
+    },
+    {
+        name: "Piter Pen",
+        phone: "086-548-55-55",
+        date: '11/10/2022'
+    },
+    {
+        name: "Oliver Twist",
+        phone: "046-558-55-55",
+        date: '10/10/2022'
+    },
+    {
+        name: "Piter Pen",
+        phone: "036-548-45-55",
+        date: '11/09/2022'
+    }
 ]

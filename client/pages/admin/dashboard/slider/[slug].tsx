@@ -5,7 +5,7 @@ import DasboardContainer from '../../../../components/dasboards/DasboardContaine
 import DasboardSidebar from '../../../../components/dasboards/DasboardSidebar/DasboardSidebar';
 import DasboardContent from '../../../../components/dasboards/DasboardContent/DasboardContent';
 import { useRouter } from "next/router";
-import {faq} from '../../../../data';
+import {reviews} from '../../../../data';
 
 
 
@@ -20,7 +20,7 @@ export default function FaQSlugDashboard() {
     return (
         <>
         <Head>
-            <title>FaQ dashboard page</title>
+            <title>Slider dashboard page</title>
         </Head>
         <DasboardHeader/>
         <DasboardContainer>
@@ -28,15 +28,15 @@ export default function FaQSlugDashboard() {
             <DasboardContent>
             <div>
                 <form>
-                    <div className={styles.faq__row}>
-                        <label>Title</label>
-                        <input type="text" value={faq[pathEL].title}/>
+                    <div className={styles.slider__row}>
+                        <label>Image</label>
+                        <input type="file" />
                     </div>
-                    <div className={styles.faq__row}>
-                        <label>Text</label>
-                        <textarea rows={10} value={faq[pathEL].text}></textarea>
+                    <div className={styles.slider__row}>
+                        <label>Description</label>
+                        <textarea value={reviews[pathEL].description}></textarea>
                     </div>
-                    <button className={styles.faq__submitBtn}>Save</button>
+                    <button className={styles.slider__submitBtn}>Save</button>
                 </form>
             </div>
             </DasboardContent>

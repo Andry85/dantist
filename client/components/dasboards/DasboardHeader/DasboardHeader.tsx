@@ -11,7 +11,7 @@ const DasboardHeader = () => {
         <>
             <header className={styles.header}>
                 <div className={styles.header__logo}>
-                    <Link href="/">
+                    <Link href="/admin/dashboard/index">
                         Admin Panel
                     </Link>
                 </div>
