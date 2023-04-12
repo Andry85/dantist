@@ -6,6 +6,7 @@ import DasboardSidebar from '../../../../components/dasboards/DasboardSidebar/Da
 import DasboardContent from '../../../../components/dasboards/DasboardContent/DasboardContent';
 import {orders} from '../../../../data';
 import Link from 'next/link';
+import { ReactNode } from 'react';
 
 
 
@@ -22,7 +23,7 @@ export default function Orders() {
         <DasboardContent>
           <div className={styles.orders}>
             <ul>
-              {orders.map((item, i) => (
+              {orders.map((item, i:number): ReactNode => (
                   <li key={i}>
                       <div className={styles.orders__status}>Open</div>
                       <div className={styles.ordres__name}>{item.name}</div>

@@ -1,3 +1,4 @@
+import React, {useState} from 'react';
 import Head from 'next/head';
 import styles from './Index.module.scss';
 import DasboardHeader from '../../../../components/dasboards/DasboardHeader/DasboardHeader';
@@ -17,6 +18,19 @@ export default function FaQSlugDashboard() {
     const path = router.asPath.split('/');
     const pathEL = path[path.length-1];
 
+    const [status, setStatus] = useState<string>('');
+    const [name, setName] = useState<string>(orders[pathEL].name || '');
+    const [phone, setPhone] = useState<string>(orders[pathEL].phone || '');
+    const [date, setDate] = useState(null);
+
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>):void => {
+        event.preventDefault();
+        console.log(status, 'status');
+        console.log(name, 'name');
+        console.log(phone, 'phone');
+        console.log(date, 'date');
+    }
+
     return (
         <>
         <Head>
@@ -27,10 +41,10 @@ export default function FaQSlugDashboard() {
             <DasboardSidebar/>
             <DasboardContent>
             <div>
-                <form>
+                <form onSubmit={handleSubmit}>
                     <div className={styles.orders__row}>
                         <label>Status</label>
-                        <select>
+                        <select onChange={(e)=> setStatus(e.target.value)}>
                             <option value="open">Open</option>
                             <option value="closed">Closed</option>
                             <option value="pending">pending</option>
@@ -39,15 +53,15 @@ export default function FaQSlugDashboard() {
                     </div>
                     <div className={styles.orders__row}>
                         <label>Name</label>
-                        <input type="text" value={orders[pathEL].name}/>
+                        <input type="text" value={name} onChange={(e)=> setName(e.target.value)} />
                     </div>
                     <div className={styles.orders__row}>
                         <label>Phone</label>
-                        <input type="text" value={orders[pathEL].phone}/>
+                        <input type="text" value={phone} onChange={(e)=> setPhone(e.target.value)} />
                     </div>
                     <div className={styles.orders__row}>
                         <label>Date</label>
-                        <input type="date" />
+                        <input type="date" value={date} onChange={(e)=> setDate(e.target.value)} />
                     </div>
                     <button className={styles.orders__submitBtn}>Save</button>
                 </form>
