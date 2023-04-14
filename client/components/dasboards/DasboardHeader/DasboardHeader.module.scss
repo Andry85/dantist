@@ -21,9 +21,14 @@
         li {
             padding: 0 2rem;
 
-            a {
+            span {
                 color: $base-color;
             }
         }
+    }
+
+    &__logout {
+        text-decoration: underline;
+        cursor: pointer;
     }
 }

@@ -1,10 +1,23 @@
 import React, { useState} from 'react';
 import styles from './DasboardHeader.module.scss';
 import Link from 'next/link';
+import type { RootState } from '../../../redux/store';
+import { useSelector, useDispatch } from 'react-redux';
+import {logOut} from '../../../redux/slices/user/userSlice';
+import { useRouter } from 'next/router';
 
 
 
 const DasboardHeader = () => {
+    const router = useRouter();
+
+    const user = useSelector((state: RootState) => state.user.login);
+    const dispatch = useDispatch();
+
+    const handleLogOut = (): void => {
+        dispatch(logOut());
+        router.push('/');
+    }
    
 
     return (
@@ -17,14 +30,12 @@ const DasboardHeader = () => {
                 </div>
                 <ul className={styles.header__user}>
                     <li>
-                        <Link href="/">
-                            User
-                        </Link>
+                        <span>{user && 'Admin'}</span>
                     </li>
                     <li>
-                        <Link href="/">
+                        <span className={styles.header__logout} onClick={handleLogOut} role='button' tabIndex={0}>
                             Log Out
-                        </Link>
+                        </span>
                     </li>
                 </ul>
             </header>

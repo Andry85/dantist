@@ -2,8 +2,11 @@
 
 .login {
     padding: 3rem;
-    max-width: 400px;
-    margin: 0 auto;
+    width: 400px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 
     &__row {
         padding: 0 0 1.5rem 0;
@@ -24,5 +27,12 @@
         width: 100%;
         cursor: pointer;
         font-weight: 600;
+    }
+
+    &__back {
+        color: $base-color;
+        display: block;
+        padding: 3rem;
+        text-align: center;
     }
 }
