@@ -19,9 +19,9 @@ export default function FaQSlugDashboard() {
     const pathEL = path[path.length-1];
 
     const [status, setStatus] = useState<string>('');
-    const [name, setName] = useState<string>(orders[pathEL].name || '');
-    const [phone, setPhone] = useState<string>(orders[pathEL].phone || '');
-    const [date, setDate] = useState(null);
+    const [name, setName] = useState<string>('');
+    const [phone, setPhone] = useState<string>('');
+    const [date, setDate] = useState('');
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>):void => {
         event.preventDefault();

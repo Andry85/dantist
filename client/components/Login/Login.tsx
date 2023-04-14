@@ -1,8 +1,14 @@
 import * as React from 'react';
 import styles from './Login.module.scss';
+import type { RootState } from '../../redux/store';
+import { useSelector, useDispatch } from 'react-redux';
+import {logIn, logOut} from '../../redux/slices/user/userSlice';
 
 
 const Login = () => {
+
+    const user = useSelector((state: RootState) => state.user.login)
+    const dispatch = useDispatch()
 
     const [login, setLogin] = React.useState<string>('');
     const [password, setPassword] = React.useState<string>('');
@@ -11,6 +17,16 @@ const Login = () => {
         event.preventDefault();
         console.log(login);
         console.log(password);
+        console.log('user', user);
+
+        if (login === 'andrii' && password === '1111') {
+            dispatch(logIn());
+            console.log('user', user);
+            if (user) {
+                window.location.replace('/admin/dashboard/index');
+            }
+        }
+
     }
 
     const handleLogin = (e: React.ChangeEvent<HTMLInputElement>): void => {

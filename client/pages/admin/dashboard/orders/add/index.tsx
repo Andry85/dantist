@@ -12,7 +12,7 @@ export default function FaQAddDashboard() {
 
   const [name, setName] = useState<string>('');
   const [phone, setPhone] = useState<string>('');
-  const [date, setDate] = useState(null);
+  const [date, setDate] = useState('');
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>):void => {
     event.preventDefault();
