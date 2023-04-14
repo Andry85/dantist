@@ -1,7 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import Header from '../components/Header/Header'
 import '@testing-library/jest-dom'
-import {menu, contacts} from '../data'
 
 jest.mock("next/router", () => ({
   useRouter() {
@@ -16,7 +15,7 @@ jest.mock("next/router", () => ({
 
 describe('Header', () => {
   it('renders header logo', () => {
-    render( <Header menu={menu} contacts={contacts} />)
+    render( <Header />)
     const headerLogo = screen.getByAltText(/logo/i);
     expect(headerLogo).toBeInTheDocument()
   })
