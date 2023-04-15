@@ -34,7 +34,7 @@ const Profile = ({profile} : ProfileProps) => {
                     </div>
                     <div className={styles.profile__reviews}>
                         <h3>Reviews:</h3>
-                        <ul className={styles.profile__skils}>
+                        <ul data-testid="skills" className={styles.profile__skils}>
                         {Array(profile.skils).fill(null).map((item, index)=> (
                                 <li key={index}>
                                     <StarIcon/>
