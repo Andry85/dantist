@@ -45,6 +45,11 @@
         width: 100%;
         cursor: pointer;
         font-weight: 600;
+
+        &:disabled {
+            opacity: 0.5;
+            cursor:not-allowed;
+        }
     }
 
     &__col {

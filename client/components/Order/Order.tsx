@@ -67,10 +67,11 @@ const Order = () => {
                                 type="text" 
                                 placeholder='Full name' 
                                 onChange={handleName}
+                                value={name}
                             />
                         </div>
                         <div className={styles.order__col}>
-                            <div className={styles.order__date}>
+                            <div  data-testid="dateField" className={styles.order__date}>
                                 <ThemeProvider theme={theme}>
                                     <DatePicker value={value} onChange={(newValue) => setValue(newValue)} />
                                 </ThemeProvider>
@@ -84,13 +85,14 @@ const Order = () => {
                                 type="tel" 
                                 placeholder='Your telephone number' 
                                 onChange={handlePhone}
+                                value={phone}
                             />
                             <div className={styles.order__phone}>
                                 <SmartphoneIcon />
                             </div>
                         </div>
                         <div className={styles.order__col}>
-                            <button className={styles.order__submitBtn}>Send</button>
+                            <button disabled={!name || !phone} data-testid="submitBtn" className={styles.order__submitBtn}>Send</button>
                         </div>
                     </div>
                 </form>
