@@ -40,11 +40,11 @@ export default function FaQSlugDashboard() {
                 <form onSubmit={handleSubmit}>
                     <div className={styles.faq__row}>
                         <label>Title</label>
-                        <input type="text" placeholder={faq[pathEL].title} onChange={(e)=> setTitle(e.target.value)}/>
+                        <input type="text" placeholder={title} onChange={(e)=> setTitle(e.target.value)}/>
                     </div>
                     <div className={styles.faq__row}>
                         <label>Text</label>
-                        <textarea rows={10} placeholder={faq[pathEL].text} onChange={(e)=> setText(e.target.value)}></textarea>
+                        <textarea rows={10} placeholder={text} onChange={(e)=> setText(e.target.value)}></textarea>
                     </div>
                     <button className={styles.faq__submitBtn}>Save</button>
                 </form>

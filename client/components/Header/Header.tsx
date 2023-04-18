@@ -15,7 +15,7 @@ const Header = () => {
 
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-    const handleClickMenuBurger = (event: React.MouseEvent<HTMLDivElement>):void => {
+    const handleClickMenuBurger = ():void => {
         setIsMobileMenuOpen(!isMobileMenuOpen);
     }
 
