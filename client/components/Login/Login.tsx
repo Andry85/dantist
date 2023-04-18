@@ -69,7 +69,7 @@ const Login = () => {
                         />
                     </div>
                     <div className={styles.login__row}>
-                        <button className={styles.login__submitBtn}>Login</button>
+                        <button data-testid="submitBtn" className={styles.login__submitBtn}>Login</button>
                     </div>
                 </form>
            </div>

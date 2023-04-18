@@ -15,10 +15,12 @@
         "@reduxjs/toolkit": "^1.9.3",
         "dayjs": "^1.11.7",
         "next": "^13.2.4",
+        "next-router-mock": "^0.9.3",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "react-redux": "^8.0.5",
         "react-router-dom": "^6.10.0",
+        "redux-mock-store": "^1.5.4",
         "sass": "^1.59.2",
         "styled-components": "^5.3.9"
     },
