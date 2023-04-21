@@ -11,6 +11,7 @@ const authRoute = require("./routes/auth");
 const postRoute = require("./routes/posts");
 const categoryRoute = require("./routes/categories");
 const userRoute = require("./routes/user");
+const indexPageRoute = require("./routes/indexpage");
 const multer = require("multer");
 const path = require('path/posix');
 const PORT = process.env.PORT || 5000;
@@ -124,6 +125,8 @@ app.use('/auth', authRoute);
 app.use('/user', userRoute);
 app.use('/api/posts', postRoute);
 app.use('/api/marks', categoryRoute);
+app.use('/indexpage', indexPageRoute);
+
 
 
 

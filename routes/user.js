@@ -8,13 +8,8 @@ const jwt = require("jsonwebtoken");
 router.post("/login", (request, response) => {
     // check if email exists
 
-    console.log(request.body.username);
-    console.log(request.body.password);
-
-
     User.findOne({ username: request.body.username })
 
-  
       // if email exists
       .then((user) => {
 

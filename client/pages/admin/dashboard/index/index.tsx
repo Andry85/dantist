@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import axios from "axios";
 import Head from 'next/head';
 import styles from './Index.module.scss';
 import DasboardHeader from '../../../../components/dasboards/DasboardHeader/DasboardHeader';
@@ -12,6 +13,7 @@ export default function IndexDashboard() {
   const [file, setFile] = useState<File>(null);
   const [text, setText] = useState<string>('');
   const [link, setLink] = useState<string>('');
+  const [handleError, setHandleError] = useState(false);
 
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -25,6 +27,19 @@ export default function IndexDashboard() {
     console.log(file, 'file');
     console.log(text, 'text');
     console.log(link, 'link');
+
+    axios.post(`${process.env.NEXT_PUBLIC_REACT_APP_DOMAIN}/indexpage/`, {file, text, link})
+    .then(response => {
+        if (response) {
+                console.log('response', response);
+                setHandleError(false);
+            }
+        }
+    )
+    .catch(error => {
+        setHandleError(true);
+    })
+
   }
 
   return (
