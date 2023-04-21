@@ -1,4 +1,5 @@
-import * as React from 'react';
+import React, { useState} from 'react';
+import axios from "axios"
 import styles from './Login.module.scss';
 import Link from 'next/link';
 import type { RootState } from '../../redux/store';
@@ -8,34 +9,33 @@ import { useRouter } from 'next/router';
 
 
 const Login = () => {
-
     const router = useRouter();
-
     const user = useSelector((state: RootState) => state.user.login);
     const dispatch = useDispatch();
-
-    const [login, setLogin] = React.useState<string>('');
+    const [handleError, setHandleError] = useState(false);
+    const [username, setUsername] = React.useState<string>('');
     const [password, setPassword] = React.useState<string>('');
-
+    
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>):void => {
         event.preventDefault();
-        console.log(login);
-        console.log(password);
-        console.log('user', user);
-
-
-            if (login === 'andrii' && password === '1111') {
-                dispatch(logIn());
-                console.log('user', user);
-                router.push('/admin/dashboard/index');
-                
+        // Handle validations
+        axios.post(`${process.env.NEXT_PUBLIC_REACT_APP_DOMAIN}/user/login`, {username, password })
+        .then(response => {
+            if (response) {
+                    dispatch(logIn());
+                    console.log('user', user);
+                    router.push('/admin/dashboard/index');
+                    setHandleError(false);
+                }
             }
-
-
+        )
+        .catch(error => {
+            setHandleError(true);
+        })
     }
 
     const handleLogin = (e: React.ChangeEvent<HTMLInputElement>): void => {
-        setLogin(e.target.value);
+        setUsername(e.target.value);
     }
 
     const handlePassword = (e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -56,7 +56,7 @@ const Login = () => {
                             type="text" 
                             placeholder='Login' 
                             onChange={handleLogin}
-                            value={login}
+                            value={username}
                         />
                     </div>
                     <div className={styles.login__row}>
@@ -71,11 +71,11 @@ const Login = () => {
                     <div className={styles.login__row}>
                         <button data-testid="submitBtn" className={styles.login__submitBtn}>Login</button>
                     </div>
+                    {handleError && <p className={styles.login__error}>Username or password is not corrected</p>}
                 </form>
            </div>
         </>
     )
 }
-
 
 export default Login;
