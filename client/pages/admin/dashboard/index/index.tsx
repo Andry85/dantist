@@ -55,7 +55,7 @@ export default function IndexDashboard() {
             <form onSubmit={handleSubmit}>
               <div className={styles.index__row}>
                 <label>Image</label>
-                <input type="file" onChange={handleFileChange} />
+                <input type="file" accept='.png, .jpg, .jpeg' onChange={handleFileChange} />
               </div>
               <div className={styles.index__row}>
                 <label>Text</label>
