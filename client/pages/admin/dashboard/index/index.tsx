@@ -30,39 +30,29 @@ export default function IndexDashboard() {
     console.log(link, 'link');
 
     if (photo) {
-      const formData = new FormData();
-      formData.append("photo", photo);
+        const formData = new FormData();
+        formData.append("photo", photo);
+        formData.append("text", text);
+        formData.append("link", link);
 
-      try {
-          console.log(formData);
-          await axiosInstance.post('/indexpage/upload', formData, {
-              headers: {
-              'Content-Type': 'multipart/form-data'
-              },
-          });
-      } catch (err) {
-          if (err.response.status === 500) {
-              console.log(err);
-          } else {
-              console.log(err.response.data.msg);
-          }
-      }
-
-  }
-
-  axios.post(`${process.env.NEXT_PUBLIC_REACT_APP_DOMAIN}/indexpage/`, {text, link})
-    .then(response => {
-        if (response) {
-                console.log('response', response);
-                setHandleError(false);
+        try {
+            console.log(formData);
+            await axiosInstance.post('/indexpage/upload/', formData, {
+                headers: {
+                'Content-Type': 'multipart/form-data'
+                },
+            });
+            setHandleError(false);
+        } catch (err) {
+            if (err.response.status === 500) {
+                console.log(err);
+                setHandleError(true);
+            } else {
+                console.log(err.response.data.msg);
             }
         }
-    )
-    .catch(error => {
-        setHandleError(true);
-    })
 
-    
+    }
 
   }
 
