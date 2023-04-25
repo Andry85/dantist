@@ -45,7 +45,7 @@ router.post('/upload', upload.single('photo'), (req, res) => {
    console.log(req.file, req.body)
    const text = req.body.text;
    const link = req.body.link;
-   const photo = req.file.path;
+   const photo = req.file.filename;
 
    const indeP = {
     photo,

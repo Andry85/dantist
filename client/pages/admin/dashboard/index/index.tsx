@@ -1,5 +1,6 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import axios from "axios";
+import Image from 'next/image';
 import Head from 'next/head';
 import styles from './Index.module.scss';
 import DasboardHeader from '../../../../components/dasboards/DasboardHeader/DasboardHeader';
@@ -15,6 +16,7 @@ export default function IndexDashboard() {
   const [text, setText] = useState<string>('');
   const [link, setLink] = useState<string>('');
   const [handleError, setHandleError] = useState(false);
+  const [avatar, setAvatar] = useState<string>('');
 
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -56,6 +58,21 @@ export default function IndexDashboard() {
 
   }
 
+  useEffect(() => {
+    const getIndexPage = async () => {
+        const res = await axiosInstance.get("/indexpage/");
+        console.log(res.data);
+        if (res.data.length !== 0) {
+          setLink(res.data[0].link);
+          setText(res.data[0].text);
+          setAvatar(res.data[0].photo);
+        }
+       
+    };
+    getIndexPage();
+    
+ }, []);
+
   return (
     <>
       <Head>
@@ -67,6 +84,7 @@ export default function IndexDashboard() {
         <DasboardContent>
           <div className={styles.index}>
             <form onSubmit={handleSubmit}>
+              <Image src={`/images/${avatar}`} width={100} height={100} alt="" />
               <div className={styles.index__row}>
                 <label>Image</label>
                 <input type="file" name='photo' accept='.png, .jpg, .jpeg' onChange={handleFileChange} />
@@ -77,7 +95,7 @@ export default function IndexDashboard() {
               </div>
               <div className={styles.index__row}>
                 <label>Link</label>
-                <input type="text" onChange={(e)=> setLink(e.target.value)} />
+                <input type="text" value={link} onChange={(e)=> setLink(e.target.value)} />
               </div>
               <button className={styles.index__submitBtn}>Save</button>
             </form>
