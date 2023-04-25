@@ -6,6 +6,7 @@ import DasboardHeader from '../../../../components/dasboards/DasboardHeader/Dasb
 import DasboardContainer from '../../../../components/dasboards/DasboardContainer/DasboardContainer';
 import DasboardSidebar from '../../../../components/dasboards/DasboardSidebar/DasboardSidebar';
 import DasboardContent from '../../../../components/dasboards/DasboardContent/DasboardContent';
+import {axiosInstance} from '../../../../config';
 
 
 
@@ -22,13 +23,34 @@ export default function IndexDashboard() {
     }
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>):void => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     console.log(file, 'file');
     console.log(text, 'text');
     console.log(link, 'link');
 
-    axios.post(`${process.env.NEXT_PUBLIC_REACT_APP_DOMAIN}/indexpage/`, {file, text, link})
+    if (file) {
+      const formData = new FormData();
+      formData.append("myfile", file);
+
+      try {
+          console.log(formData);
+          await axiosInstance.post('upload', formData, {
+              headers: {
+              'Content-Type': 'multipart/form-data'
+              },
+          });
+      } catch (err) {
+          if (err.response.status === 500) {
+              console.log(err);
+          } else {
+              console.log(err.response.data.msg);
+          }
+      }
+
+  }
+
+    axios.post(`${process.env.NEXT_PUBLIC_REACT_APP_DOMAIN}/indexpage/`, {file: file.name, text, link})
     .then(response => {
         if (response) {
                 console.log('response', response);
@@ -55,7 +77,7 @@ export default function IndexDashboard() {
             <form onSubmit={handleSubmit}>
               <div className={styles.index__row}>
                 <label>Image</label>
-                <input type="file" accept='.png, .jpg, .jpeg' onChange={handleFileChange} />
+                <input type="file" name='photo' accept='.png, .jpg, .jpeg' onChange={handleFileChange} />
               </div>
               <div className={styles.index__row}>
                 <label>Text</label>
