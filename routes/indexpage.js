@@ -54,11 +54,29 @@ router.post('/upload', upload.single('photo'), (req, res) => {
    }
 
    const newIndexPage = new IndexPage(indeP);
-   newIndexPage.save().then(() => res.status(200).json('Index page added successfully'))
+   newIndexPage.save()
    .catch(err => res.status(500).json(err));
 
-
 });
+
+//Update indexPage
+router.put("/upload/:id", upload.single('photo'), (req, res) => {
+
+        const text = req.body.text;
+        const link = req.body.link;
+        const photo = req.file.filename;
+    
+        const indeP = {
+            photo,
+            text,
+            link
+        }
+
+        IndexPage.findByIdAndUpdate(req.params.id, {$set: indeP}, {new: true})
+        .then(() => res.status(200).json('Index page updated successfully'))
+        .catch(err => res.status(500).json(err));
+    
+  });
 
 
 module.exports = router;
