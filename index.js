@@ -2,7 +2,6 @@ const express =  require('express');
 const app = express();
 const dotenv = require('dotenv');
 const fs = require('fs');
-const multer = require("multer");
 const path = require('path/posix');
 
 
@@ -56,32 +55,7 @@ mongoose.connect(process.env.MONGO_URL)
 });
 
 
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, 'images')
-    },
-    filename: function (req, file, cb) {
-        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
-        cb(null, file.fieldname + '-' + uniqueSuffix)
-    }
-});
 
-const fileFilter = (req, file, cb) => {
-    const allowedFileTypes = ['image/jpeg', 'image/jpg', 'image/png'];
-    if (allowedFileTypes.includes(file.mimetype)) {
-        cb(null, true);
-    } else {
-        cb(null, false);
-    }
-}
-
-const upload = multer({storage, fileFilter });
-
-app.post('/api/upload', upload.single('photo'), function (req, res, next) {
-    // req.files is array of `photos` files
-    // req.body will contain the text fields, if there were any
-    console.log(req.file, req.body)
-});
 
 
 

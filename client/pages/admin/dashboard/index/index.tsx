@@ -11,7 +11,7 @@ import {axiosInstance} from '../../../../config';
 
 
 export default function IndexDashboard() {
-  const [file, setFile] = useState<File>(null);
+  const [photo, setPhoto] = useState<File>(null);
   const [text, setText] = useState<string>('');
   const [link, setLink] = useState<string>('');
   const [handleError, setHandleError] = useState(false);
@@ -19,23 +19,23 @@ export default function IndexDashboard() {
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
-      setFile(e.target.files[0]);
+      setPhoto(e.target.files[0]);
     }
   };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log(file, 'file');
+    console.log(photo, 'photo');
     console.log(text, 'text');
     console.log(link, 'link');
 
-    if (file) {
+    if (photo) {
       const formData = new FormData();
-      formData.append("myfile", file);
+      formData.append("photo", photo);
 
       try {
           console.log(formData);
-          await axiosInstance.post('upload', formData, {
+          await axiosInstance.post('/indexpage/upload', formData, {
               headers: {
               'Content-Type': 'multipart/form-data'
               },
@@ -50,7 +50,7 @@ export default function IndexDashboard() {
 
   }
 
-    axios.post(`${process.env.NEXT_PUBLIC_REACT_APP_DOMAIN}/indexpage/`, {file: file.name, text, link})
+  axios.post(`${process.env.NEXT_PUBLIC_REACT_APP_DOMAIN}/indexpage/`, {text, link})
     .then(response => {
         if (response) {
                 console.log('response', response);
@@ -61,6 +61,8 @@ export default function IndexDashboard() {
     .catch(error => {
         setHandleError(true);
     })
+
+    
 
   }
 
