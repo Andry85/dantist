@@ -1,11 +1,11 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Head from 'next/head';
 import styles from './Index.module.scss';
 import DasboardHeader from '../../../../../components/dasboards/DasboardHeader/DasboardHeader';
 import DasboardContainer from '../../../../../components/dasboards/DasboardContainer/DasboardContainer';
 import DasboardSidebar from '../../../../../components/dasboards/DasboardSidebar/DasboardSidebar';
 import DasboardContent from '../../../../../components/dasboards/DasboardContent/DasboardContent';
-
+import {axiosInstance} from '../../../../../config';
 
 
 export default function FaQAddDashboard() {
@@ -13,10 +13,13 @@ export default function FaQAddDashboard() {
   const [title, setTitle] = useState<string>('');
   const [text, setText] = useState<string>('');
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>):void => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     console.log(text, 'text');
     console.log(title, 'title');
+
+    await axiosInstance.post('/faq', {title, text});
+    window.location.replace('/admin/dashboard/faq');
   }
 
   return (

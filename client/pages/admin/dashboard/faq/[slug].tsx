@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Head from 'next/head';
 import styles from './Index.module.scss';
 import DasboardHeader from '../../../../components/dasboards/DasboardHeader/DasboardHeader';
@@ -6,7 +6,7 @@ import DasboardContainer from '../../../../components/dasboards/DasboardContaine
 import DasboardSidebar from '../../../../components/dasboards/DasboardSidebar/DasboardSidebar';
 import DasboardContent from '../../../../components/dasboards/DasboardContent/DasboardContent';
 import { useRouter } from "next/router";
-import {faq} from '../../../../data';
+import {axiosInstance} from '../../../../config';
 
 
 
@@ -16,16 +16,30 @@ export default function FaQSlugDashboard() {
 
     const [title, setTitle] = useState<string>('');
     const [text, setText] = useState<string>('');
+    const [id, setId] = useState<string>('');
 
     const router = useRouter();
     const path = router.asPath.split('/');
     const pathEL = path[path.length-1];
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>):void => {
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        console.log(text, 'text');
-        console.log(title, 'title');
+
+        await axiosInstance.put(`/faq/${id}`, {title, text});
+        window.location.replace('/admin/dashboard/faq');
+
     }
+
+    useEffect(() => {
+        const getFaqPage = async () => {
+            const res = await axiosInstance.get(`/faq/${pathEL}`);
+            console.log(res.data);
+            setTitle(res.data.title);
+            setText(res.data.text);
+            setId(res.data._id);
+        };
+        getFaqPage(); 
+      }, []);
 
     return (
         <>
@@ -40,13 +54,13 @@ export default function FaQSlugDashboard() {
                 <form onSubmit={handleSubmit}>
                     <div className={styles.faq__row}>
                         <label>Title</label>
-                        <input type="text" placeholder={title} onChange={(e)=> setTitle(e.target.value)}/>
+                        <input type="text" value={title} onChange={(e)=> setTitle(e.target.value)}/>
                     </div>
                     <div className={styles.faq__row}>
                         <label>Text</label>
-                        <textarea rows={10} placeholder={text} onChange={(e)=> setText(e.target.value)}></textarea>
+                        <textarea rows={10} value={text} onChange={(e)=> setText(e.target.value)}></textarea>
                     </div>
-                    <button className={styles.faq__submitBtn}>Save</button>
+                    <button className={styles.faq__submitBtn}>Update</button>
                 </form>
             </div>
             </DasboardContent>

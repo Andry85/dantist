@@ -1,21 +1,26 @@
-import React, { useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import styles from './FaqList.module.scss';
 
 
 
-type FaqListProps = {
-    faq: {
-        title: string;
-        text: string;
-    }[];
-}
+const FaqList = ({fags}) => {
 
-const FaqList = ({faq} : FaqListProps) => {
+    
+    useEffect(() => {
+       
+    }, [fags]);
+    
 
-    const [faqArray, setFaqArray] = useState(Array(faq.length).fill(0));
-    const arrCopy = [...faqArray];
+
+    const [faqArray, setFaqArray] = useState(Array(fags.length).fill(0));
+
+    
+
 
     const toogleAccardion = (index) => {
+       
+        console.log(faqArray, 'faqArray'); 
+        const arrCopy = [...faqArray];
         const filterArr = arrCopy.map((el, i) => {
             if (i === index) {
                 if (el !== 'active') {
@@ -44,12 +49,13 @@ const FaqList = ({faq} : FaqListProps) => {
     }
 
 
+
     return (
         <>
             <div className={styles.faqWrapper}>
                 <h2 className={styles.faqWrapper__title}>FAQ</h2>
                 <ul className={styles.faqWrapperList}>
-                    {faq.map((item, i) => (
+                    {fags.map((item, i) => (
                         <li key={i}>
                             <h3 
                                 className={`${styles.faqWrapperList__title} ${faqArray[i] === 'active' ? styles.faqWrapperList__titleActive : ''}`}
