@@ -1,7 +1,7 @@
+import React, {useState, useEffect} from 'react';
 import styles from './Profile.module.scss';
-import Image from 'next/image';
 import StarIcon from '@mui/icons-material/Star';
-
+import {axiosInstance} from '../../config';
 
 
 type ProfileProps = {
@@ -16,6 +16,29 @@ type ProfileProps = {
 }
 
 const Profile = ({profile} : ProfileProps) => {
+
+    const PF = `${process.env.NEXT_PUBLIC_REACT_APP_DOMAIN}/images/`;
+
+    const [title, setTitle] = useState<string>('');
+    const [text, setText] = useState<string>('');
+    const [expirience, setExpirience] = useState<string>('');
+    const [reviews, setReviews] = useState<string>('');
+    const [avatar, setAvatar] = useState<string>('');
+
+    useEffect(() => {
+        const getAboutPage = async () => {
+            const res = await axiosInstance.get("/aboutpage/");
+            console.log(res.data);
+            if (res.data.length !== 0) {
+              setTitle(res.data[0].title);
+              setText(res.data[0].text);
+              setAvatar(res.data[0].photo);
+              setExpirience(res.data[0].expirience);
+              setReviews(res.data[0].reviews);
+            }
+        };
+        getAboutPage(); 
+      }, []);
    
 
 
@@ -24,18 +47,18 @@ const Profile = ({profile} : ProfileProps) => {
             <article className={styles.profile}>
                 <div className={styles.profile__sidebar}>
                     <div className={styles.profile__description}>
-                        <h2>{profile.name}</h2>
-                        <p>{profile.description}</p>
+                        <h2>{title}</h2>
+                        <p>{text}</p>
                     </div>
                     <div className={styles.profile__experience}>
                         <h3>Expirience:</h3>
-                        <strong>{profile.experience}</strong>
+                        <strong>{expirience}</strong>
                         <span>years</span>
                     </div>
                     <div className={styles.profile__reviews}>
                         <h3>Reviews:</h3>
                         <ul data-testid="skills" className={styles.profile__skils}>
-                        {Array(profile.skils).fill(null).map((item, index)=> (
+                        {Array(Number(reviews)).fill(null).map((item, index)=> (
                                 <li key={index}>
                                     <StarIcon/>
                                 </li>
@@ -44,7 +67,7 @@ const Profile = ({profile} : ProfileProps) => {
                     </div>
                 </div>
                 <div className={styles.profile__pic}>
-                    <Image src={profile.image} width={1280} height={848} alt="" />
+                    <img src={`${PF}/${avatar}`}  alt="" />
                 </div>
             </article>
         

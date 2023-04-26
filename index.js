@@ -9,6 +9,7 @@ const path = require('path/posix');
 const mongoose = require("mongoose");
 const userRoute = require("./routes/user");
 const indexPageRoute = require("./routes/indexpage");
+const aboutPageRoute = require("./routes/aboutpage");
 const PORT = process.env.PORT || 5000;
 const cookieSession = require('cookie-session');
 const cors = require('cors');
@@ -59,10 +60,12 @@ mongoose.connect(process.env.MONGO_URL)
 
 
 
-
-
+// routs
 app.use('/user', userRoute);
 app.use('/indexpage', indexPageRoute);
+app.use('/aboutpage', aboutPageRoute);
+
+
 
 
 
