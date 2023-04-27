@@ -2,24 +2,14 @@ import React, {useState, useEffect} from 'react';
 import styles from './FaqList.module.scss';
 
 
-
 const FaqList = ({fags}) => {
-
-    
+    const [faqArray, setFaqArray] = useState(Array(fags.length).fill(0));
     useEffect(() => {
-       
+        console.log(fags);
+        setFaqArray(Array(fags.length).fill(0));
     }, [fags]);
     
-
-
-    const [faqArray, setFaqArray] = useState(Array(fags.length).fill(0));
-
-    
-
-
     const toogleAccardion = (index) => {
-       
-        console.log(faqArray, 'faqArray'); 
         const arrCopy = [...faqArray];
         const filterArr = arrCopy.map((el, i) => {
             if (i === index) {
@@ -37,7 +27,6 @@ const FaqList = ({fags}) => {
         setFaqArray(filterArr);
     }
 
-
     const handleTitleClick = (index: number): void => {
         toogleAccardion(index);
     }
@@ -47,8 +36,6 @@ const FaqList = ({fags}) => {
             toogleAccardion(index);
         }
     }
-
-
 
     return (
         <>
@@ -76,6 +63,5 @@ const FaqList = ({fags}) => {
         </>
     )
 }
-
 
 export default FaqList;

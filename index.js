@@ -10,6 +10,7 @@ const userRoute = require("./routes/user");
 const indexPageRoute = require("./routes/indexpage");
 const aboutPageRoute = require("./routes/aboutpage");
 const faqRoute = require("./routes/faq");
+const orderRoute = require("./routes/order");
 const PORT = process.env.PORT || 5000;
 const cookieSession = require('cookie-session');
 const cors = require('cors');
@@ -65,7 +66,7 @@ app.use('/user', userRoute);
 app.use('/indexpage', indexPageRoute);
 app.use('/aboutpage', aboutPageRoute);
 app.use('/faq', faqRoute);
-
+app.use('/order', orderRoute);
 
 
 

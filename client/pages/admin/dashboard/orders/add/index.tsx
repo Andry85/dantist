@@ -5,7 +5,7 @@ import DasboardHeader from '../../../../../components/dasboards/DasboardHeader/D
 import DasboardContainer from '../../../../../components/dasboards/DasboardContainer/DasboardContainer';
 import DasboardSidebar from '../../../../../components/dasboards/DasboardSidebar/DasboardSidebar';
 import DasboardContent from '../../../../../components/dasboards/DasboardContent/DasboardContent';
-
+import {axiosInstance} from '../../../../../config';
 
 
 export default function FaQAddDashboard() {
@@ -13,12 +13,16 @@ export default function FaQAddDashboard() {
   const [name, setName] = useState<string>('');
   const [phone, setPhone] = useState<string>('');
   const [date, setDate] = useState('');
+  const [status, setStatus] = useState('open');
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>):void => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     console.log(name, 'name');
     console.log(phone, 'phone');
     console.log(date, 'date');
+
+    await axiosInstance.post('/order', {name, phone, date, status});
+    window.location.replace('/admin/dashboard/orders');
 }
 
   return (

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Head from 'next/head';
 import styles from './Index.module.scss';
 import DasboardHeader from '../../../../components/dasboards/DasboardHeader/DasboardHeader';
@@ -7,6 +7,7 @@ import DasboardSidebar from '../../../../components/dasboards/DasboardSidebar/Da
 import DasboardContent from '../../../../components/dasboards/DasboardContent/DasboardContent';
 import { useRouter } from "next/router";
 import {orders} from '../../../../data';
+import {axiosInstance} from '../../../../config';
 
 
 
@@ -22,14 +23,34 @@ export default function FaQSlugDashboard() {
     const [name, setName] = useState<string>('');
     const [phone, setPhone] = useState<string>('');
     const [date, setDate] = useState('');
+    const [id, setId] = useState<string>('');
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>):void => {
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        console.log(status, 'status');
-        console.log(name, 'name');
-        console.log(phone, 'phone');
-        console.log(date, 'date');
+
+        await axiosInstance.put(`/order/${id}`, {name, phone, date, status});
+        window.location.replace('/admin/dashboard/orders');
     }
+
+    useEffect(() => {
+        const getOrderPage = async () => {
+            const res = await axiosInstance.get(`/order/${pathEL}`);
+            setName(res.data.name);
+            setPhone(res.data.phone);
+            setId(res.data._id);
+            setStatus(res.data.status);
+
+            const providedDate = new Date(res.data.date);
+            const providedDateDay = String(providedDate.getDate()).padStart(2, '0');
+            const providedDateMonth = String(providedDate.getMonth() + 1).padStart(2, '0');
+            const providedDateYear = providedDate.getFullYear();
+            const fullDate = `${providedDateYear}-${providedDateMonth}-${providedDateDay}`;
+            setDate(fullDate);
+
+
+        };
+        getOrderPage(); 
+      }, []);
 
     return (
         <>

@@ -1,9 +1,9 @@
-import * as React from 'react';
+import React, {useState} from 'react';
 import styles from './Order.module.scss';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import SmartphoneIcon from '@mui/icons-material/Smartphone';
-
+import {axiosInstance} from '../../config';
 
 const theme = createTheme({
     components: {
@@ -35,13 +35,38 @@ const Order = () => {
     const [value, setValue] = React.useState<string | null>(null);
     const [name, setName] = React.useState<string>('');
     const [phone, setPhone] = React.useState<string>('');
+    const [status, setStatus] = useState('open');
+    const [handleError, setHandleError] = useState(false);
+    const [isSucess, setIsucess] = useState(false);
     
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>):void => {
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const date = new Date(value);
         console.log(name);
         console.log(phone);
         console.log(date);
+
+        //await axiosInstance.post('/order', {name, phone, date, status});
+
+        axiosInstance.post('/order', {
+            name, phone, date, status
+          })
+          .then(function (response) {
+            console.log(response);
+            if(response.status === 200) {
+                setHandleError(false);
+                setIsucess(true);
+
+                setTimeout(() => {
+                    setIsucess(false);
+                }, 5000);
+            }
+          })
+          .catch(function (error) {
+            console.log(error);
+            setHandleError(true);
+            setIsucess(false);
+          });
         
     }
 
@@ -93,6 +118,8 @@ const Order = () => {
                         </div>
                         <div className={styles.order__col}>
                             <button disabled={!name || !phone} data-testid="submitBtn" className={styles.order__submitBtn}>Send</button>
+                            {handleError && <p className={styles.order__error}>Someting is wrong</p>}
+                            {isSucess && <p className={styles.order__sucess}>Request is sent. We will contact with you later.</p>}        
                         </div>
                     </div>
                 </form>
