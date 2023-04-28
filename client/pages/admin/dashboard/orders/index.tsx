@@ -37,6 +37,25 @@ export default function Orders() {
     getAllOrders(); 
   }, []);
 
+  const renderStatus = (status) => {
+    switch (status) {
+      case 'open':
+        return <div style={{color: "#F7C04A"}}>{status}</div>;
+        break;
+      case 'closed':
+        return <div style={{color: "#D21312"}}>{status}</div>;
+        break;
+      case 'pending':
+        return <div style={{color: "#FA9884"}}>{status}</div>;
+        break;
+      case 'accepted':
+        return <div style={{color: "#539165"}}>{status}</div>;
+        break;
+      default:
+        return false
+    }
+  }
+
   return (
     <>
       <Head>
@@ -50,8 +69,10 @@ export default function Orders() {
             <ul>
               {orders.map((item, i:number): ReactNode => (
                   <li key={i}>
-                      <div className={styles.orders__status}>{item.status}</div>
-                      <div className={styles.ordres__name}>{item.name}</div>
+                      <div className={styles.orders__status}>
+                        {renderStatus(item.status)}
+                      </div>
+                      <div className={styles.orders__name}>{item.name}</div>
                       <div className={styles.orders__phone}>{item.phone}</div>
                       <div className={styles.orders__date}>
                           {String(new Date(item.date).getDate()).padStart(2, '0')}/
