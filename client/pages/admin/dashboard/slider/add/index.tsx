@@ -1,28 +1,52 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Head from 'next/head';
 import styles from './Index.module.scss';
 import DasboardHeader from '../../../../../components/dasboards/DasboardHeader/DasboardHeader';
 import DasboardContainer from '../../../../../components/dasboards/DasboardContainer/DasboardContainer';
 import DasboardSidebar from '../../../../../components/dasboards/DasboardSidebar/DasboardSidebar';
 import DasboardContent from '../../../../../components/dasboards/DasboardContent/DasboardContent';
+import {axiosInstance} from '../../../../../config';
 
 
 
 export default function SliderAddDashboard() {
 
-  const [file, setFile] = useState<File>(null);
+  const [photo, setPhoto] = useState<File>(null);
   const [description, setDescription] = useState<string>('');
+  const [handleError, setHandleError] = useState(false);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       if (e.target.files) {
-      setFile(e.target.files[0]);
+        setPhoto(e.target.files[0]);
       }
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>):void => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
       event.preventDefault();
-      console.log(file, 'file');
+      console.log(photo, 'photo');
       console.log(description, 'description');
+
+      const formData = new FormData();
+      formData.append("photo", photo);
+      formData.append("description", description);
+
+      try {
+          console.log(formData);
+          await axiosInstance.post('/slider/upload/', formData, {
+              headers: {
+              'Content-Type': 'multipart/form-data'
+              },
+          });
+          window.location.replace('/admin/dashboard/slider');
+          setHandleError(false);
+      } catch (err) {
+          if (err.response.status === 500) {
+              console.log(err);
+              setHandleError(true);
+          } else {
+              console.log(err.response.data.msg);
+          }
+      }
   }
 
   return (

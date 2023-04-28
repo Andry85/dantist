@@ -1,3 +1,4 @@
+import React, {useState, useEffect} from 'react';
 import Head from 'next/head';
 import styles from './Index.module.scss';
 import DasboardHeader from '../../../../components/dasboards/DasboardHeader/DasboardHeader';
@@ -7,11 +8,34 @@ import DasboardContent from '../../../../components/dasboards/DasboardContent/Da
 import {reviews} from '../../../../data';
 import Link from 'next/link';
 import Image from 'next/image';
-
+import {axiosInstance} from '../../../../config';
 
 
 
 export default function Slider() {
+
+  const PF = `${process.env.NEXT_PUBLIC_REACT_APP_DOMAIN}/images/`;
+
+  const [slides, setSlides] = useState<[]>([]);
+
+  const handleDelete = async (event, id) => {
+    event.preventDefault();
+
+    await axiosInstance.delete(`/slider/${id}`);
+    window.location.replace('/admin/dashboard/slider');
+  }
+
+  useEffect(() => {
+    const getAllSlides = async () => {
+        const res = await axiosInstance.get("/slider/");
+        console.log(res.data);
+        if (res.data.length !== 0) {
+          setSlides(res.data);
+        }
+    };
+    getAllSlides(); 
+  }, []);
+
   return (
     <>
       <Head>
@@ -23,19 +47,19 @@ export default function Slider() {
         <DasboardContent>
           <div className={styles.slider}>
             <ul>
-              {reviews.map((item, i) => (
+              {slides.map((item, i) => (
                   <li key={i}>
                       <figure className={styles.slider__img}>
-                        <Image src={item.image} width={100} height={100} alt="" />
+                        {item.photo && <img src={`${PF}/${item.photo}`} width={100} height={100} alt="" />} 
                       </figure>
                       <div className={styles.slider__desc}>
                         <p>{item.description}</p>
                       </div>
                       <div className={styles.slider__edit}>
-                        <Link href={`/admin/dashboard/slider/${i}`}>Edit</Link>
+                        <Link href={`/admin/dashboard/slider/${item._id}`}>Edit</Link>
                       </div>
                       <div className={styles.slider__delete}>
-                        <button>Delete</button>
+                        <button onClick={(e) => handleDelete(e, item._id)}>Delete</button>
                       </div>
                   </li>
               ))}
