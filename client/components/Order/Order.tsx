@@ -6,6 +6,9 @@ import SmartphoneIcon from '@mui/icons-material/Smartphone';
 import {axiosInstance} from '../../config';
 
 const theme = createTheme({
+    typography: {
+        htmlFontSize: 8,
+    },
     components: {
         MuiInputBase: {
             styleOverrides: {
