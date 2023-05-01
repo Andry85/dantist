@@ -2,7 +2,7 @@ const router = require("express").Router();
 const Slider = require("../models/Slider");
 const multer = require("multer");
 const path = require("path");
-
+const fs = require('fs');
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -71,6 +71,29 @@ router.delete("/:id", async (req, res) => {
     } catch(err) {
         res.status(500).json(err);
     }
+});
+
+//Delete slide
+router.delete("/:id", async (req, res) => {
+    try {
+        const slider = await Slider.findById(req.params.id);
+        await slider.delete();
+        res.status(200).json('Slide has been deleted');
+    } catch(err) {
+        res.status(500).json(err);
+    }
+});
+
+//Delete slide image
+router.delete("/deleteImg/:image", (req, res) => {
+
+    let path = `./images/${req.params.image}`;
+    fs.unlink(path, (err) => {
+        if (err) {
+            console.error(err)
+            return
+        }
+    });
 });
 
 // Get slider

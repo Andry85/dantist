@@ -19,7 +19,6 @@ export default function IndexPage() {
         <Preambule preambule={preambule}/>
         <Order/>
         <Reviews 
-          reviews={reviews}
           slides={4}
           />
       </Container>

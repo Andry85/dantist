@@ -5,9 +5,7 @@ import DasboardHeader from '../../../../components/dasboards/DasboardHeader/Dasb
 import DasboardContainer from '../../../../components/dasboards/DasboardContainer/DasboardContainer';
 import DasboardSidebar from '../../../../components/dasboards/DasboardSidebar/DasboardSidebar';
 import DasboardContent from '../../../../components/dasboards/DasboardContent/DasboardContent';
-import {reviews} from '../../../../data';
 import Link from 'next/link';
-import Image from 'next/image';
 import {axiosInstance} from '../../../../config';
 
 
@@ -18,11 +16,11 @@ export default function Slider() {
 
   const [slides, setSlides] = useState<[]>([]);
 
-  const handleDelete = async (event, id) => {
+  const handleDelete = async (event, id, image) => {
     event.preventDefault();
 
     await axiosInstance.delete(`/slider/${id}`);
-    window.location.replace('/admin/dashboard/slider');
+    await axiosInstance.delete(`/slider/deleteImg/${image}`);
   }
 
   useEffect(() => {
@@ -34,7 +32,7 @@ export default function Slider() {
         }
     };
     getAllSlides(); 
-  }, []);
+  }, [slides]);
 
   return (
     <>
@@ -59,7 +57,7 @@ export default function Slider() {
                         <Link href={`/admin/dashboard/slider/${item._id}`}>Edit</Link>
                       </div>
                       <div className={styles.slider__delete}>
-                        <button onClick={(e) => handleDelete(e, item._id)}>Delete</button>
+                        <button onClick={(e) => handleDelete(e, item._id, item.photo)}>Delete</button>
                       </div>
                   </li>
               ))}
