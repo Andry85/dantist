@@ -2,7 +2,7 @@ const router = require("express").Router();
 const path = require("path");
 const IndexPage = require("../models/IndexPage");
 const multer = require("multer");
-
+const fs = require('fs');
 
 
 
@@ -64,7 +64,12 @@ router.put("/upload/:id", upload.single('photo'), (req, res) => {
 
         const text = req.body.text;
         const link = req.body.link;
-        const photo = req.file.filename;
+        let photo = ''; ;
+        if (req.file?.filename !== undefined) {
+            photo = req.file?.filename;
+        }
+
+        console.log('photo', photo);
     
         const indeP = {
             photo,
@@ -77,6 +82,19 @@ router.put("/upload/:id", upload.single('photo'), (req, res) => {
         .catch(err => res.status(500).json(err));
     
   });
+
+//Delete image
+router.delete("/deleteImg/:image", (req, res) => {
+
+    let path = `./images/${req.params.image}`;
+    fs.unlink(path, (err) => {
+        if (err) {
+            console.error(err)
+            return
+        }
+    });
+});
+
 
 
 module.exports = router;

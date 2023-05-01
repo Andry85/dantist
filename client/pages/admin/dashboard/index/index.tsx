@@ -70,6 +70,7 @@ export default function IndexDashboard() {
                 },
             });
             setHandleError(false);
+            window.location.replace('/admin/dashboard/index');
         } catch (err) {
             if (err.response.status === 500) {
                 console.log(err);
@@ -94,7 +95,14 @@ export default function IndexDashboard() {
         }
     };
     getIndexPage(); 
-  }, []);
+  }, [avatar]);
+
+  const handleDelete = async (event, avatar) => {
+    event.preventDefault();
+
+    await axiosInstance.delete(`/indexpage/deleteImg/${avatar}`);
+
+  }
 
   return (
     <>
@@ -108,10 +116,8 @@ export default function IndexDashboard() {
           <div className={styles.index}>
             <form onSubmit={handleSubmit}>
               <div className={styles.index__row}>
-                <p>{id}</p>
-              </div>
-              <div className={styles.index__row}>
-               {avatar && <img src={`${PF}/${avatar}`} width={100} height={100} alt="" />} 
+               {avatar ? <img src={`${PF}/${avatar}`} width={100} height={100} alt="" /> : ''} 
+               {avatar ? <button className={styles.index__deleteImag} onClick={(e) => handleDelete(e, avatar)}>Delete</button> : ''}
               </div>
               <div className={styles.index__row}>
                 <label>Image</label>
