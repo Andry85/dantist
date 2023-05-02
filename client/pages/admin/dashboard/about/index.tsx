@@ -69,6 +69,7 @@ export default function AboutDashboard() {
       formData.append("title", title);
       formData.append("expirience", expirience);
       formData.append("reviews", reviews);
+      formData.append("avatar", avatar);
 
         try {
             console.log(formData);
@@ -78,6 +79,7 @@ export default function AboutDashboard() {
                 },
             });
             setHandleError(false);
+            window.location.replace('/admin/dashboard/about');
         } catch (err) {
             if (err.response.status === 500) {
                 console.log(err);
@@ -106,6 +108,11 @@ export default function AboutDashboard() {
     getAboutPage(); 
   }, []);
 
+  const handleDelete = async (event, avatar) => {
+    setAvatar('');
+    await axiosInstance.delete(`/aboutpage/deleteImg/${avatar}`);
+  }
+
 
   return (
     <>
@@ -119,9 +126,6 @@ export default function AboutDashboard() {
           <div className={styles.index}>
             <form onSubmit={handleSubmit}>
               <div className={styles.index__row}>
-                <p>{id}</p>
-              </div>
-              <div className={styles.index__row}>
                 <label>Title</label>
                 <input type="text" value={title} onChange={(e)=> setTitle(e.target.value)} />
               </div>
@@ -131,6 +135,7 @@ export default function AboutDashboard() {
               </div>
               <div className={styles.index__row}>
                {avatar && <img src={`${PF}/${avatar}`} width={100} height={100} alt="" />} 
+               {avatar ? <button className={styles.index__deleteImag} onClick={(e) => handleDelete(e, avatar)}>Delete</button> : ''}
               </div>
               <div className={styles.index__row}>
                 <label>Image</label>

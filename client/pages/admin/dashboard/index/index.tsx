@@ -61,6 +61,7 @@ export default function IndexDashboard() {
         formData.append("photo", photo);
         formData.append("text", text);
         formData.append("link", link);
+        formData.append("avatar", avatar);
 
         try {
             console.log(formData);
@@ -95,13 +96,11 @@ export default function IndexDashboard() {
         }
     };
     getIndexPage(); 
-  }, [avatar]);
+  }, []);
 
   const handleDelete = async (event, avatar) => {
-    event.preventDefault();
-
+    setAvatar('');
     await axiosInstance.delete(`/indexpage/deleteImg/${avatar}`);
-
   }
 
   return (

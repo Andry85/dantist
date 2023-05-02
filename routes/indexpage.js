@@ -64,9 +64,15 @@ router.put("/upload/:id", upload.single('photo'), (req, res) => {
 
         const text = req.body.text;
         const link = req.body.link;
-        let photo = ''; ;
+        const avatar = req.body.avatar;
+
+        console.log(avatar, 'avatar');
+
+        let photo = '';
         if (req.file?.filename !== undefined) {
             photo = req.file?.filename;
+        } else {
+            photo = avatar;
         }
 
         console.log('photo', photo);

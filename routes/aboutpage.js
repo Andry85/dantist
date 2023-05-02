@@ -2,7 +2,7 @@ const router = require("express").Router();
 const path = require("path");
 const AboutPage = require("../models/AboutPage");
 const multer = require("multer");
-
+const fs = require('fs');
 
 
 
@@ -70,7 +70,19 @@ router.put("/upload/:id", upload.single('photo'), (req, res) => {
         const title = req.body.title;
         const expirience = req.body.expirience;
         const reviews = req.body.reviews;
-        const photo = req.file?.filename;
+
+        const avatar = req.body.avatar;
+
+        console.log(avatar, 'avatar');
+
+        let photo = '';
+        if (req.file?.filename !== undefined) {
+            photo = req.file?.filename;
+        } else {
+            photo = avatar;
+        }
+
+        console.log('photo', photo);
         
         const aboutP = {
             photo,
@@ -84,7 +96,19 @@ router.put("/upload/:id", upload.single('photo'), (req, res) => {
         .then(() => res.status(200).json('Index page updated successfully'))
         .catch(err => res.status(500).json(err));
     
-  });
+});
+
+//Delete image
+router.delete("/deleteImg/:image", (req, res) => {
+
+    let path = `./images/${req.params.image}`;
+    fs.unlink(path, (err) => {
+        if (err) {
+            console.error(err)
+            return
+        }
+    });
+});
 
 
 module.exports = router;

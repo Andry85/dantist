@@ -8,6 +8,11 @@
         margin: 0 0 2rem;
         border-bottom: 1px dotted $secondary-color;
 
+        img {
+            display: inline-block;
+            vertical-align: middle;
+        }
+
         label {
             display: block;
             font-size: 1.6rem;
@@ -47,5 +52,17 @@
     &__expirience {
         padding: 0 0 0 1rem;
         font-size: 1.4rem;
+    }
+
+    &__deleteImag {
+        background-color: $base-color;
+        color: $white-color;
+        padding: 1rem;
+        cursor: pointer;
+        width: 200px;
+        border: 0;
+        display: inline-block;
+        vertical-align: middle;
+        margin: 0 0 0 2rem;
     }
 }
