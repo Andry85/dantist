@@ -16,22 +16,31 @@ export default function Slider() {
 
   const [slides, setSlides] = useState<[]>([]);
 
-  const handleDelete = async (event, id, image) => {
-    event.preventDefault();
+  const handleDelete = async (id, image) => {
+
+
+    setSlides(prevState => {
+      // Object.assign would also work
+      return prevState.filter(item => item.id !== id);
+    });
+
+    console.log(slides, 'slides');
 
     await axiosInstance.delete(`/slider/${id}`);
     await axiosInstance.delete(`/slider/deleteImg/${image}`);
+
+    
   }
 
+  const getAllSlides = async () => {
+      const res = await axiosInstance.get("/slider/");
+      console.log(res.data);
+      setSlides(res.data);
+  };
+
   useEffect(() => {
-    const getAllSlides = async () => {
-        const res = await axiosInstance.get("/slider/");
-        console.log(res.data);
-        if (res.data.length !== 0) {
-          setSlides(res.data);
-        }
-    };
     getAllSlides(); 
+    console.log(slides, 'slides');
   }, [slides]);
 
   return (
@@ -57,7 +66,7 @@ export default function Slider() {
                         <Link href={`/admin/dashboard/slider/${item._id}`}>Edit</Link>
                       </div>
                       <div className={styles.slider__delete}>
-                        <button onClick={(e) => handleDelete(e, item._id, item.photo)}>Delete</button>
+                        <button onClick={(e) => handleDelete(item._id, item.photo)}>Delete</button>
                       </div>
                   </li>
               ))}

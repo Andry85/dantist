@@ -131,7 +131,7 @@ export default function AboutDashboard() {
               </div>
               <div className={styles.index__row}>
                 <label>Text</label>
-                <textarea value={text} onChange={(e)=> setText(e.target.value)} />
+                <textarea rows={7} value={text} onChange={(e)=> setText(e.target.value)} />
               </div>
               <div className={styles.index__row}>
                {avatar && <img src={`${PF}/${avatar}`} width={100} height={100} alt="" />} 
