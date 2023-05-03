@@ -28,9 +28,6 @@ export default function IndexDashboard() {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log(photo, 'photo');
-    console.log(text, 'text');
-    console.log(link, 'link');
 
     // creating page
     if (!avatar && !id) {
@@ -40,7 +37,6 @@ export default function IndexDashboard() {
         formData.append("link", link);
 
         try {
-            console.log(formData);
             await axiosInstance.post('/indexpage/upload/', formData, {
                 headers: {
                 'Content-Type': 'multipart/form-data'
@@ -64,7 +60,6 @@ export default function IndexDashboard() {
         formData.append("avatar", avatar);
 
         try {
-            console.log(formData);
             await axiosInstance.put(`/indexpage/upload/${id}`, formData, {
                 headers: {
                 'Content-Type': 'multipart/form-data'
@@ -87,7 +82,6 @@ export default function IndexDashboard() {
   useEffect(() => {
     const getIndexPage = async () => {
         const res = await axiosInstance.get("/indexpage/");
-        console.log(res.data);
         if (res.data.length !== 0) {
           setLink(res.data[0].link);
           setText(res.data[0].text);
@@ -124,7 +118,7 @@ export default function IndexDashboard() {
               </div>
               <div className={styles.index__row}>
                 <label>Text</label>
-                <textarea  value={text} onChange={(e)=> setText(e.target.value)} />
+                <textarea rows={8} value={text} onChange={(e)=> setText(e.target.value)} />
               </div>
               <div className={styles.index__row}>
                 <label>Link</label>

@@ -14,7 +14,6 @@ export default function FaqPage() {
   useEffect(() => {
     const getAllFaqs = async () => {
           const res = await axiosInstance.get("/faq/");
-          console.log(res.data);
           if (res.data.length !== 0) {
               setFags(res.data);
           }

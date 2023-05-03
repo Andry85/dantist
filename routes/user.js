@@ -12,9 +12,6 @@ router.post("/login", (request, response) => {
 
       // if email exists
       .then((user) => {
-
-        console.log(user);
-
         // compare the password entered and the hashed password found
 
         if (request.body.password === user.password) {

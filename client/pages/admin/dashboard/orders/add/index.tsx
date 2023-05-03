@@ -17,10 +17,7 @@ export default function FaQAddDashboard() {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log(name, 'name');
-    console.log(phone, 'phone');
-    console.log(date, 'date');
-
+    
     await axiosInstance.post('/order', {name, phone, date, status});
     window.location.replace('/admin/dashboard/orders');
 }

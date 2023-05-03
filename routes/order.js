@@ -21,9 +21,6 @@ router.post("/", async (req, res) => {
 
 //Update new order
 router.put("/:id", async (req, res) => {
-
-    console.log(req.params.id, 'req.params.id');
-
     try {
         const updatedOrder = await Order.findByIdAndUpdate(req.params.id, {
             $set: req.body

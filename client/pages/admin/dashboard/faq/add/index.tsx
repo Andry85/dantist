@@ -15,8 +15,6 @@ export default function FaQAddDashboard() {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log(text, 'text');
-    console.log(title, 'title');
 
     await axiosInstance.post('/faq', {title, text});
     window.location.replace('/admin/dashboard/faq');

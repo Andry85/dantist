@@ -42,7 +42,6 @@ const upload = multer({storage, fileFilter });
 //Create new page
 router.post('/upload', upload.single('photo'), (req, res) => {
 
-   console.log(req.file, req.body)
    const text = req.body.text;
    const link = req.body.link;
    const photo = req.file.filename;
@@ -66,16 +65,12 @@ router.put("/upload/:id", upload.single('photo'), (req, res) => {
         const link = req.body.link;
         const avatar = req.body.avatar;
 
-        console.log(avatar, 'avatar');
-
         let photo = '';
         if (req.file?.filename !== undefined) {
             photo = req.file?.filename;
         } else {
             photo = avatar;
         }
-
-        console.log('photo', photo);
     
         const indeP = {
             photo,

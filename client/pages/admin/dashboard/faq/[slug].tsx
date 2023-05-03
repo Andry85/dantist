@@ -33,7 +33,6 @@ export default function FaQSlugDashboard() {
     useEffect(() => {
         const getFaqPage = async () => {
             const res = await axiosInstance.get(`/faq/${pathEL}`);
-            console.log(res.data);
             setTitle(res.data.title);
             setText(res.data.text);
             setId(res.data._id);

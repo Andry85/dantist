@@ -45,17 +45,11 @@ const Order = () => {
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const date = new Date(value);
-        console.log(name);
-        console.log(phone);
-        console.log(date);
-
-        //await axiosInstance.post('/order', {name, phone, date, status});
 
         axiosInstance.post('/order', {
             name, phone, date, status
           })
           .then(function (response) {
-            console.log(response);
             if(response.status === 200) {
                 setHandleError(false);
                 setIsucess(true);

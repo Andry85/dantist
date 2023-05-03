@@ -23,7 +23,6 @@ const Login = () => {
         .then(response => {
             if (response) {
                     dispatch(logIn());
-                    console.log('user', user);
                     router.push('/admin/dashboard/index');
                     setHandleError(false);
                 }

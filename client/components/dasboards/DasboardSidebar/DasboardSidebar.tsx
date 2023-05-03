@@ -7,8 +7,6 @@ import { useRouter } from "next/router";
 const DasboardSidebar = () => {
 
     const router = useRouter();
-
-    console.log(router.asPath);
    
     return (
         <>

@@ -21,10 +21,8 @@ const Reviews = ({slides} : ReviewsProps) => {
     const [slidesResult, setSlidesResult] = useState<[]>([]);
 
     useEffect(() => {
-
         const getAllSlides = async () => {
             const res = await axiosInstance.get("/slider/");
-            console.log(res.data);
             if (res.data.length !== 0) {
                 setSlidesResult(res.data);
 
@@ -35,12 +33,9 @@ const Reviews = ({slides} : ReviewsProps) => {
             }
         };
         getAllSlides(); 
-
-        
     }, [])
 
 
-   
     const handleMove = (type: string): void => {
         setSliderOverwlow(slidesResult.length - countSlides);
 
@@ -80,7 +75,7 @@ const Reviews = ({slides} : ReviewsProps) => {
                 }
                 <div className={styles.reviews__container}>
                     <ul style={{left: `${position * (100/countSlides)}%`}}>
-                        {slidesResult.map((item, index) => (
+                        {slidesResult.map((item: any, index) => (
                             <li key={index} style={{flexBasis: `${100 / countSlides}%`}}>
                                 {item.photo && <img src={`${PF}/${item.photo}`} width={100} height={100} alt="" />} 
                                 <p>{item.description}</p>

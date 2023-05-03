@@ -23,15 +23,12 @@ export default function SliderAddDashboard() {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
       event.preventDefault();
-      console.log(photo, 'photo');
-      console.log(description, 'description');
 
       const formData = new FormData();
       formData.append("photo", photo);
       formData.append("description", description);
 
       try {
-          console.log(formData);
           await axiosInstance.post('/slider/upload/', formData, {
               headers: {
               'Content-Type': 'multipart/form-data'

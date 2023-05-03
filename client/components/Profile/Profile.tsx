@@ -28,7 +28,6 @@ const Profile = ({profile} : ProfileProps) => {
     useEffect(() => {
         const getAboutPage = async () => {
             const res = await axiosInstance.get("/aboutpage/");
-            console.log(res.data);
             if (res.data.length !== 0) {
               setTitle(res.data[0].title);
               setText(res.data[0].text);

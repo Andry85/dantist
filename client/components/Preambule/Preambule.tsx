@@ -29,7 +29,6 @@ const Preambule = ({preambule} : PreambuleProps) => {
     useEffect(() => {
         const getIndexPage = async () => {
             const res = await axiosInstance.get("/indexpage/");
-            console.log(res.data);
             if (res.data.length !== 0) {
                 setLink(res.data[0].link);
                 setText(res.data[0].text);

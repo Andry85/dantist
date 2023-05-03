@@ -26,7 +26,6 @@ export default function FaQDashboard() {
   useEffect(() => {
     const getAllFaqs = async () => {
         const res = await axiosInstance.get("/faq/");
-        console.log(res.data);
         if (res.data.length !== 0) {
           setFags(res.data);
         }
@@ -34,6 +33,10 @@ export default function FaQDashboard() {
     getAllFaqs(); 
   }, []);
 
+  type itemProps = {
+    title: string;
+    _id: string;
+  }
 
 
   return (
@@ -47,7 +50,7 @@ export default function FaQDashboard() {
         <DasboardContent>
           <div className={styles.faq}>
             <ul>
-              {fags.map((item, i:number): ReactNode => (
+              {fags.map((item: itemProps, i:number): ReactNode => (
                   <li key={i}>
                       <div className={styles.faq__index}>{i+1}</div>
                       <div className={styles.faq__title}>{item.title}</div>

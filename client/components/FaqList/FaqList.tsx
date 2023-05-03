@@ -5,7 +5,6 @@ import styles from './FaqList.module.scss';
 const FaqList = ({fags}) => {
     const [faqArray, setFaqArray] = useState(Array(fags.length).fill(0));
     useEffect(() => {
-        console.log(fags);
         setFaqArray(Array(fags.length).fill(0));
     }, [fags]);
     

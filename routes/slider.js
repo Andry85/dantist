@@ -27,8 +27,6 @@ const upload = multer({storage, fileFilter });
 
 //Create new slide
 router.post('/upload', upload.single('photo'), (req, res) => {
-
-    console.log(req.file, req.body)
     const description = req.body.description;
     const photo = req.file?.filename;
 
@@ -46,8 +44,6 @@ router.post('/upload', upload.single('photo'), (req, res) => {
 
 //Update new slider
 router.put("/upload/:id", upload.single('photo'), (req, res) => {
-
-    console.log(req.params.id, 'req.params.id');
 
     const description = req.body.description;
     const photo = req.file?.filename;

@@ -30,11 +30,6 @@ export default function AboutDashboard() {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log(photo, 'photo');
-    console.log(text, 'text');
-    console.log(title, 'title');
-    console.log(expirience, 'expirience');
-    console.log(reviews, 'reviews');
 
     // creating page
     if (!avatar && !id) {
@@ -46,7 +41,6 @@ export default function AboutDashboard() {
         formData.append("reviews", reviews);
 
         try {
-            console.log(formData);
             await axiosInstance.post('/aboutpage/upload/', formData, {
                 headers: {
                 'Content-Type': 'multipart/form-data'
@@ -72,7 +66,6 @@ export default function AboutDashboard() {
       formData.append("avatar", avatar);
 
         try {
-            console.log(formData);
             await axiosInstance.put(`/aboutpage/upload/${id}`, formData, {
                 headers: {
                 'Content-Type': 'multipart/form-data'
@@ -95,7 +88,6 @@ export default function AboutDashboard() {
   useEffect(() => {
     const getAboutPage = async () => {
         const res = await axiosInstance.get("/aboutpage/");
-        console.log(res.data);
         if (res.data.length !== 0) {
           setTitle(res.data[0].title);
           setText(res.data[0].text);
@@ -154,6 +146,7 @@ export default function AboutDashboard() {
                   <option value="8">8</option>
                   <option value="9">9</option>
                   <option value="10">10</option>
+                  <option value="more 10">10+</option>
                 </select>
                 <i className={styles.index__expirience}>years</i>
               </div>

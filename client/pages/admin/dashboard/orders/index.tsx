@@ -29,7 +29,6 @@ export default function Orders() {
   useEffect(() => {
     const getAllOrders = async () => {
         const res = await axiosInstance.get("/order/");
-        console.log(res.data);
         if (res.data.length !== 0) {
           setOrders(res.data);
         }
@@ -56,6 +55,14 @@ export default function Orders() {
     }
   }
 
+  type itemProps = {
+    status: string;
+    name: string;
+    phone: string;
+    date: string;
+    _id: string;
+  }
+
   return (
     <>
       <Head>
@@ -67,7 +74,7 @@ export default function Orders() {
         <DasboardContent>
           <div className={styles.orders}>
             <ul>
-              {orders.map((item, i:number): ReactNode => (
+              {orders.map((item: itemProps, i:number): ReactNode => (
                   <li key={i}>
                       <div className={styles.orders__status}>
                         {renderStatus(item.status)}

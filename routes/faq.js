@@ -22,8 +22,6 @@ router.post("/", async (req, res) => {
 //Update new faq
 router.put("/:id", async (req, res) => {
 
-    console.log(req.params.id, 'req.params.id');
-
     try {
         const updatedFaq = await Faq.findByIdAndUpdate(req.params.id, {
             $set: req.body

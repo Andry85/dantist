@@ -34,15 +34,12 @@ export default function FaQSlugDashboard() {
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        console.log(photo, 'photo');
-        console.log(description, 'description');
 
         const formData = new FormData();
         formData.append("photo", photo);
         formData.append("description", description);
 
         try {
-            console.log(formData);
             await axiosInstance.put(`/slider/upload/${id}`, formData, {
                 headers: {
                 'Content-Type': 'multipart/form-data'
@@ -52,7 +49,6 @@ export default function FaQSlugDashboard() {
             window.location.replace('/admin/dashboard/slider');
         } catch (err) {
             if (err.response.status === 500) {
-                console.log(err);
                 setHandleError(true);
             } else {
                 console.log(err.response.data.msg);
@@ -64,7 +60,6 @@ export default function FaQSlugDashboard() {
     useEffect(() => {
         const getSlide = async () => {
             const res = await axiosInstance.get(`/slider/${pathEL}`);
-            console.log(res.data);
             setPhoto(res.data.photo);
             setDescription(res.data.description);
             setAvatar(res.data.photo);
