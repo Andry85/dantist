@@ -6,7 +6,6 @@ import DasboardContainer from '../../../../components/dasboards/DasboardContaine
 import DasboardSidebar from '../../../../components/dasboards/DasboardSidebar/DasboardSidebar';
 import DasboardContent from '../../../../components/dasboards/DasboardContent/DasboardContent';
 import { useRouter } from "next/router";
-import {orders} from '../../../../data';
 import {axiosInstance} from '../../../../config';
 
 
