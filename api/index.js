@@ -21,7 +21,7 @@ let CLIENT_URL;
 
 
 if (process.env.NODE_ENV === "production") {
-    CLIENT_URL = 'http://16.16.94.200';
+    CLIENT_URL = 'http://smileclinic.in.ua';
 } else {
     CLIENT_URL = 'http://localhost:3000'; 
 }
