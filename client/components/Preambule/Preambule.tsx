@@ -1,24 +1,11 @@
 import React, {useState, useEffect} from 'react';
 import styles from './Preambule.module.scss';
-import Image from 'next/image';
 import Link from 'next/link';
 import {axiosInstance} from '../../config';
 
 
 
-type PreambuleProps = {
-    preambule: {
-        image: string;
-        description: string;
-        button: {
-         title: string;
-         link: string;
-        }
-    }
-  
-}
-
-const Preambule = ({preambule} : PreambuleProps) => {
+const Preambule = () => {
 
     const PF = `${process.env.NEXT_PUBLIC_REACT_APP_DOMAIN}/images/`;
 

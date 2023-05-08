@@ -4,18 +4,7 @@ import StarIcon from '@mui/icons-material/Star';
 import {axiosInstance} from '../../config';
 
 
-type ProfileProps = {
-    profile: {
-        name: string;
-        image: string;
-        description: string;
-        experience: number,
-        skils: number
-    }
-  
-}
-
-const Profile = ({profile} : ProfileProps) => {
+const Profile = () => {
 
     const PF = `${process.env.NEXT_PUBLIC_REACT_APP_DOMAIN}/images/`;
 

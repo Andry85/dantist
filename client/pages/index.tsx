@@ -4,7 +4,6 @@ import Preambule from '../components/Preambule/Preambule';
 import Order from '../components/Order/Order';
 import Header from '../components/Header/Header';
 import Footer from '../components/Footer/Footer';
-import {preambule, reviews} from '../data';
 import Reviews from '../components/Reviews/Reviews';
 
 
@@ -16,7 +15,7 @@ export default function IndexPage() {
       </Head>
       <Header />
       <Container>
-        <Preambule preambule={preambule}/>
+        <Preambule/>
         <Order/>
         <Reviews 
           slides={4}

@@ -4,7 +4,6 @@ import Footer from '../components/Footer/Footer';
 import Container from '../components/Container/Container';
 import Order from '../components/Order/Order';
 import Profile from '../components/Profile/Profile';
-import {profile} from '../data';
 
 
 export default function AboutPage() {
@@ -15,7 +14,7 @@ export default function AboutPage() {
       </Head>
       <Header />
       <Container>
-        <Profile profile={profile} />
+        <Profile />
         <Order/>
       </Container>
       <Footer/>
